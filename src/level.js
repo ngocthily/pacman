@@ -400,37 +400,47 @@ export default class Level {
     }
 
     drawDots(ctx) {
+        // might have to keep this separate from level
         // big dots
         ctx.beginPath();
-        ctx.arc(60, 120, 8, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(60, 120, 6, 0, 2 * Math.PI);
+        ctx.fillStyle = "lavender";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(480, 120, 8, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(480, 120, 6, 0, 2 * Math.PI);
+        ctx.fillStyle = "lavender";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(60, 480, 8, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(60, 480, 6, 0, 2 * Math.PI);
+        ctx.fillStyle = "lavender";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(480, 480, 8, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(480, 480, 6, 0, 2 * Math.PI);
+        ctx.fillStyle = "lavender";
         ctx.fill();
 
         // little circles
         // horizontal lines straight thru
-        const jHArr=[60,210,390,540];
+        const jHArr=[60,210,390];
         for (let j = 0; j < jHArr.length; j++) {
             for(let i=60; i<=540;i+=30) {
                 ctx.beginPath();
-                ctx.arc(i, jHArr[j], 3, 0, 2 * Math.PI);
-                ctx.fillStyle = "yellow";
+                ctx.arc(i, jHArr[j], 2, 0, 2 * Math.PI);
+                ctx.fillStyle = "white";
                 ctx.fill();
             }
+        }
+
+        // skip the one dot that pacman starts on
+        for(let i=60;i<=540;i+=30) {
+            if (i===300) {continue;}
+            ctx.beginPath();
+            ctx.arc(i, 540, 2, 0, 2 * Math.PI);
+            ctx.fillStyle = "white";
+            ctx.fill();
         }
 
         // vertical lines
@@ -438,8 +448,8 @@ export default class Level {
         for(let i=0;i<j1VArr.length;i++) {
             for(let j=90;j<=180;j+=30) {
                 ctx.beginPath();
-                ctx.arc(j1VArr[i], j, 3, 0, 2 * Math.PI);
-                ctx.fillStyle = "yellow";
+                ctx.arc(j1VArr[i], j, 2, 0, 2 * Math.PI);
+                ctx.fillStyle = "white";
                 ctx.fill();
             }
         }
@@ -448,8 +458,8 @@ export default class Level {
         for(let i=0;i<j2VArr.length;i++) {
             for(let j=240;j<=360;j+=30) {
                 ctx.beginPath();
-                ctx.arc(j2VArr[i], j, 3, 0, 2 * Math.PI);
-                ctx.fillStyle = "yellow";
+                ctx.arc(j2VArr[i], j, 2, 0, 2 * Math.PI);
+                ctx.fillStyle = "white";
                 ctx.fill();
             }
         }
@@ -458,89 +468,89 @@ export default class Level {
         for (let i=0;i<j3VArr.length;i++) {
             for (let j = 420; j <= 510; j += 30) {
                 ctx.beginPath();
-                ctx.arc(j3VArr[i], j, 3, 0, 2 * Math.PI);
-                ctx.fillStyle = "yellow";
+                ctx.arc(j3VArr[i], j, 2, 0, 2 * Math.PI);
+                ctx.fillStyle = "white";
                 ctx.fill();
             }
         }
 
         // the rest of the dots
         ctx.beginPath();
-        ctx.arc(60, 90, 3, 0, 2 * Math.PI);
-        ctx.arc(60, 150, 3, 0, 2 * Math.PI);
-        ctx.arc(60, 180, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(60, 90, 2, 0, 2 * Math.PI);
+        ctx.arc(60, 150, 2, 0, 2 * Math.PI);
+        ctx.arc(60, 180, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(120, 120, 3, 0, 2 * Math.PI);
-        ctx.arc(120, 150, 3, 0, 2 * Math.PI);
-        ctx.arc(120, 180, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(120, 120, 2, 0, 2 * Math.PI);
+        ctx.arc(120, 150, 2, 0, 2 * Math.PI);
+        ctx.arc(120, 180, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(240, 120, 3, 0, 2 * Math.PI);
-        ctx.arc(240, 150, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(240, 120, 2, 0, 2 * Math.PI);
+        ctx.arc(240, 150, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(270, 120, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(270, 120, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(510, 120, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(510, 120, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(60, 420, 3, 0, 2 * Math.PI);
-        ctx.arc(60, 450, 3, 0, 2 * Math.PI);
-        ctx.arc(60, 510, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(60, 420, 2, 0, 2 * Math.PI);
+        ctx.arc(60, 450, 2, 0, 2 * Math.PI);
+        ctx.arc(60, 510, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(120, 420, 3, 0, 2 * Math.PI);
-        ctx.arc(120, 480, 3, 0, 2 * Math.PI);
-        ctx.arc(120, 510, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(120, 420, 2, 0, 2 * Math.PI);
+        ctx.arc(120, 480, 2, 0, 2 * Math.PI);
+        ctx.arc(120, 510, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(180, 420, 3, 0, 2 * Math.PI);
-        ctx.arc(180, 480, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(180, 420, 2, 0, 2 * Math.PI);
+        ctx.arc(180, 480, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(210, 450, 3, 0, 2 * Math.PI);
-        ctx.arc(210, 480, 3, 0, 2 * Math.PI);
-        ctx.arc(210, 510, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(210, 450, 2, 0, 2 * Math.PI);
+        ctx.arc(210, 480, 2, 0, 2 * Math.PI);
+        ctx.arc(210, 510, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(270, 420, 3, 0, 2 * Math.PI);
-        ctx.arc(270, 450, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(270, 420, 2, 0, 2 * Math.PI);
+        ctx.arc(270, 450, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(300, 450, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(300, 450, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(270, 510, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(270, 510, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(360, 450, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = "yellow";
+        ctx.arc(360, 450, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
         ctx.fill();
     }
 }
