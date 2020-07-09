@@ -72,8 +72,6 @@ export default class Main {
         ctx.closePath();
         ctx.fillStyle = "yellow";
         ctx.fill();
-
-
     }
 
     move(way) {
@@ -90,19 +88,18 @@ export default class Main {
         }
 
         this.resetDirection();
+        this.switchSide();
 
         if (way === "right") {
             // within bounds
             // this.x + 5 <= 540 && 
             // for right 
-            // this.board[Math.round(this.y / 30) - 1][Math.round((this.x - 15) / 30)] !== 1
             if (this.board[Math.round(this.y / 30) - 1][Math.round((this.x - 15) / 30)] !== 1) {
                 this.x+=5;
             }
             this.right = true;
         } else if (way === "left") {
             // this.x - 5 >= 60
-            // this.board[Math.round(this.y/ 30) - 1][Math.round((this.x+15) / 30) - 2] !== 1
             if (this.board[Math.round(this.y / 30) - 1][Math.round((this.x + 15) / 30) - 2] !== 1) {
                 this.x-=5;
             }
@@ -110,7 +107,6 @@ export default class Main {
         } else if (way === "up") {
             // y increases from top of page to bottom
             // this.y - 5 >= 60
-            // this.board[Math.round((this.y +15) / 30) -2][Math.round(this.x / 30) - 1] !== 1
             if (this.board[Math.round((this.y + 15) / 30) - 2][Math.round(this.x / 30) - 1] !== 1) {
                 this.y-=5;
             }
@@ -131,4 +127,11 @@ export default class Main {
         this.down = false;
     }
     
+    switchSide() {
+        if (this.x === 35 && 295 <= this.y && this.y <= 310) {
+            this.x = 565;
+        } else if (this.x === 565 && 295 <= this.y && this.y <= 310) {
+            this.x = 35;
+        }
+    }
 }
