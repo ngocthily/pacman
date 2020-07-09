@@ -93,23 +93,31 @@ export default class Main {
 
         if (way === "right") {
             // within bounds
-            if (this.x + 5 <= 540) {
+            // this.x + 5 <= 540 && 
+            // for right 
+            // this.board[Math.round(this.y / 30) - 1][Math.round((this.x - 15) / 30)] !== 1
+            if (this.board[Math.round(this.y / 30) - 1][Math.round((this.x - 15) / 30)] !== 1) {
                 this.x+=5;
             }
             this.right = true;
         } else if (way === "left") {
-            if (this.x - 5 >= 60) {
+            // this.x - 5 >= 60
+            // this.board[Math.round(this.y/ 30) - 1][Math.round((this.x+15) / 30) - 2] !== 1
+            if (this.board[Math.round(this.y / 30) - 1][Math.round((this.x + 15) / 30) - 2] !== 1) {
                 this.x-=5;
             }
             this.left = true;
         } else if (way === "up") {
             // y increases from top of page to bottom
-            if (this.y - 5 >= 60) {
+            // this.y - 5 >= 60
+            // this.board[Math.round((this.y +15) / 30) -2][Math.round(this.x / 30) - 1] !== 1
+            if (this.board[Math.round((this.y + 15) / 30) - 2][Math.round(this.x / 30) - 1] !== 1) {
                 this.y-=5;
             }
             this.up = true;
         } else if (way === "down") {
-            if (this.y + 5 <= 540) {
+            // this.y + 5 <= 540
+            if (this.board[Math.round((this.y - 15) / 30)][Math.round(this.x / 30) - 1] !== 1) {
                 this.y+=5;
             }
             this.down = true;
@@ -122,20 +130,5 @@ export default class Main {
         this.up = false;
         this.down = false;
     }
-
-    // collisionWithWalls(object) {
-    //     var distX = Math.abs(this.x - (object[0] - 30 / 2));
-    //     var distY = Math.abs(this.y - (object[0] - 30 / 2));
-
-    //     if (distX > (30 / 2 + 7.5)) { return false; }
-    //     if (distY > (30 / 2 + 7.5)) { return false; }
-
-    //     if (distX <= (30/ 2)) { return true; }
-    //     if (distY <= (30 / 2)) { return true; }
-
-    //     var dx = distX - 30 / 2;
-    //     var dy = distY - 30 / 2;
-    //     return (dx * dx + dy * dy <= (15 * 15));
-    // }
     
 }
