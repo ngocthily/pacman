@@ -23,7 +23,7 @@ export default class Pacman {
     registerEvents(e) {
         e.preventDefault();
         if (e.keyCode === 39) {
-            this.main.move("right")
+            this.main.move("right");
         } else if (e.keyCode === 37) {
             this.main.move("left")
         } else if (e.keyCode === 38) {
@@ -32,7 +32,7 @@ export default class Pacman {
             this.main.move("down")
         }
         // put on end because then there will be lag
-        this.animate();
+        setInterval(() => {this.animate()}, 1000);
     }
 
     animate() {
