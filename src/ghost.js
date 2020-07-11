@@ -64,7 +64,7 @@ export default class Ghost {
         loadImage('../images/ghosts.png')
             .then(image => {
                 ctx.drawImage(image,
-                    580, 160,
+                    580, 180,
                     180, 180,
                     this.blueX-13, this.blueY-13,
                     30, 30)
@@ -130,7 +130,7 @@ export default class Ghost {
             loadImage('../images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        0, 360,
+                        0, 380,
                         180, 180,
                         this.pinkX - 13, this.pinkY - 13,
                         30, 30)
@@ -140,7 +140,7 @@ export default class Ghost {
             loadImage('../images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        180, 360,
+                        180, 380,
                         180, 180,
                         this.pinkX - 13, this.pinkY - 13,
                         30, 30)
@@ -150,7 +150,7 @@ export default class Ghost {
             loadImage('../images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        180, 540,
+                        180, 560,
                         180, 180,
                         this.pinkX - 13, this.pinkY - 13,
                         30, 30)
@@ -160,7 +160,7 @@ export default class Ghost {
             loadImage('../images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        0, 540,
+                        0, 560,
                         180, 180,
                         this.pinkX - 13, this.pinkY - 13,
                         30, 30)
@@ -188,7 +188,7 @@ export default class Ghost {
             loadImage('../images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        580, 360,
+                        580, 380,
                         180, 180,
                         this.orangeX - 13, this.orangeY - 13,
                         30, 30)
@@ -226,7 +226,7 @@ export default class Ghost {
             loadImage('../images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        400, 0,
+                        380, 0,
                         180, 180,
                         this.blueX - 13, this.blueY - 13,
                         30, 30)
@@ -246,7 +246,7 @@ export default class Ghost {
             loadImage('../images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        580, 160,
+                        580, 180,
                         180, 180,
                         this.blueX - 13, this.blueY - 13,
                         30, 30)
