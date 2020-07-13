@@ -39,7 +39,7 @@ export default class Ghost {
         // initially draw
         // pink
         // eyes up
-        loadImage('../images/ghosts.png')
+        loadImage('images/ghosts.png')
             .then(image => {
                 ctx.drawImage(image,
                     180, 380,
@@ -50,7 +50,7 @@ export default class Ghost {
 
         // orange
         // eyes down
-        loadImage('../images/ghosts.png')
+        loadImage('images/ghosts.png')
             .then(image => {
                 ctx.drawImage(image,
                     400, 560,
@@ -61,7 +61,7 @@ export default class Ghost {
         
         // blue
         // eyes left
-        loadImage('../images/ghosts.png')
+        loadImage('images/ghosts.png')
             .then(image => {
                 ctx.drawImage(image,
                     580, 180,
@@ -78,7 +78,7 @@ export default class Ghost {
         // 4: down
         if (this.redMap[((this.redY)/30) - 1][((this.redX+30)/30) -1] === 1) {
             this.redX += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         0, 0,
@@ -88,7 +88,7 @@ export default class Ghost {
                 });
         } else if (this.redMap[((this.redY-30) / 30) - 1][((this.redX) / 30) - 1] === 2) {
             this.redY -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         180, 0,
@@ -99,7 +99,7 @@ export default class Ghost {
             
         } else if (this.redMap[((this.redY) / 30) - 1][((this.redX - 30) / 30) - 1] === 3) {
             this.redX -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         180, 180,
@@ -109,7 +109,7 @@ export default class Ghost {
                 });
         } else if (this.redMap[((this.redY+30) / 30) - 1][((this.redX) / 30) - 1] === 4) {
             this.redY += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         0, 180,
@@ -127,7 +127,7 @@ export default class Ghost {
         // 4: down
         if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX + 30) / 30) - 1] === 1) {
             this.pinkX += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         0, 380,
@@ -137,7 +137,7 @@ export default class Ghost {
                 });
         } else if (this.pinkMap[((this.pinkY - 30) / 30) - 1][((this.pinkX) / 30) - 1] === 2) {
             this.pinkY -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         180, 380,
@@ -147,7 +147,7 @@ export default class Ghost {
                 });
         } else if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX - 30) / 30) - 1] === 3) {
             this.pinkX -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         180, 560,
@@ -157,7 +157,7 @@ export default class Ghost {
                 });
         } else if (this.pinkMap[((this.pinkY + 30) / 30) - 1][((this.pinkX) / 30) - 1] === 4) {
             this.pinkY += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         0, 560,
@@ -175,7 +175,7 @@ export default class Ghost {
         // 4: down
         if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX + 30) / 30) - 1] === 1) {
             this.orangeX += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         400, 360,
@@ -185,7 +185,7 @@ export default class Ghost {
                 });
         } else if (this.orangeMap[((this.orangeY - 30) / 30) - 1][((this.orangeX) / 30) - 1] === 2) {
             this.orangeY -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         580, 380,
@@ -195,7 +195,7 @@ export default class Ghost {
                 });
         } else if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX - 30) / 30) - 1] === 3) {
             this.orangeX -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         580, 560,
@@ -205,7 +205,7 @@ export default class Ghost {
                 });
         } else if (this.orangeMap[((this.orangeY + 30) / 30) - 1][((this.orangeX) / 30) - 1] === 4) {
             this.orangeY += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         400, 560,
@@ -223,7 +223,7 @@ export default class Ghost {
         // 4: down
         if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX + 30) / 30) - 1] === 1) {
             this.blueX += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         380, 0,
@@ -233,7 +233,7 @@ export default class Ghost {
                 });
         } else if (this.blueMap[((this.blueY - 30) / 30) - 1][((this.blueX) / 30) - 1] === 2) {
             this.blueY -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         580, 0,
@@ -243,7 +243,7 @@ export default class Ghost {
                 });
         } else if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX - 30) / 30) - 1] === 3) {
             this.blueX -= 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         580, 180,
@@ -253,7 +253,7 @@ export default class Ghost {
                 });
         } else if (this.blueMap[((this.blueY + 30) / 30) - 1][((this.blueX) / 30) - 1] === 4) {
             this.blueY += 30;
-            loadImage('../images/ghosts.png')
+            loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
                         400, 180,
