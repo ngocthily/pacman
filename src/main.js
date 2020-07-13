@@ -106,10 +106,14 @@ export default class Main {
     }
     
     switchSide() {
-        if (this.x === 35 && 295 <= this.y && this.y <= 310) {
+        console.log("x-coordinate")
+        console.log(this.x)
+        console.log("y-coordinate")
+        console.log(this.y)
+        if (this.x === 30 && 295 <= this.y && this.y <= 310) {
             this.x = 565;
         } else if (this.x === 565 && 295 <= this.y && this.y <= 310) {
-            this.x = 35;
+            this.x = 30;
         }
     }
 
@@ -131,6 +135,7 @@ export default class Main {
     }
 
     die(ctx) {
+        // this is where the dying sprites goes
         // ctx.beginPath();
         // ctx.arc(this.x, this.y, 15, 0 * Math.PI, 2 * Math.PI);
         // ctx.lineTo(this.x-4, this.y);
