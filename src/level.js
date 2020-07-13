@@ -17,20 +17,20 @@ export default class Level {
 
         // Tiles
         // Temporary just to see
-        var bw = this.dimensions.width-30;
-        var bh = this.dimensions.height-30;
-        var p = 15;
-        for (var x = 0; x <= bw; x += 30) {
-            ctx.moveTo(0.5 + x + p, p);
-            ctx.lineTo(0.5 + x + p, bh + p);
-        }
+        // var bw = this.dimensions.width-30;
+        // var bh = this.dimensions.height-30;
+        // var p = 15;
+        // for (var x = 0; x <= bw; x += 30) {
+        //     ctx.moveTo(0.5 + x + p, p);
+        //     ctx.lineTo(0.5 + x + p, bh + p);
+        // }
 
-        for (var x = 0; x <= bh; x += 30) {
-            ctx.moveTo(p, 0.5 + x + p);
-            ctx.lineTo(bw + p, 0.5 + x + p);
-        }
-        ctx.strokeStyle = "white";
-        ctx.stroke();
+        // for (var x = 0; x <= bh; x += 30) {
+        //     ctx.moveTo(p, 0.5 + x + p);
+        //     ctx.lineTo(bw + p, 0.5 + x + p);
+        // }
+        // ctx.strokeStyle = "white";
+        // ctx.stroke();
         this.drawLines(ctx);
         this.drawInside(ctx);
         this.drawDots(ctx);

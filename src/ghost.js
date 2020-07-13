@@ -281,6 +281,14 @@ export default class Ghost {
         setTimeout(() => {this.blueY -= 30}, 4000);
         setTimeout(() => {this.blueY -= 30}, 5000);
     }
+
+    removeGhosts() {
+        // moves the ghosts off canvas
+        this.redX = 1000;
+        this.pinkX = 1000;
+        this.orangeX = 1000;
+        this.blueX = 1000;
+    }
 }
 
 

@@ -130,5 +130,12 @@ export default class Main {
         }
     }
 
-
+    die(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 15, 0, 2 * Math.PI);
+        ctx.lineTo(this.x - 4, this.y);
+        ctx.closePath();
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+    }
 }
