@@ -124,18 +124,19 @@ export default class Main {
                 // small dots are worth 10 each
             } else if (this.board[(this.y / 30) - 1][(this.x / 30) - 1] === 3) {
                 this.board[(this.y / 30) - 1][(this.x / 30) - 1] = 0;
-                this.score += 60;
+                this.score += 50;
                 // big dots are worth 50 each
             }
         }
     }
 
     die(ctx) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 15, 0, 2 * Math.PI);
-        ctx.lineTo(this.x - 4, this.y);
-        ctx.closePath();
-        ctx.fillStyle = "yellow";
-        ctx.fill();
+        // ctx.beginPath();
+        // ctx.arc(this.x, this.y, 15, 0 * Math.PI, 2 * Math.PI);
+        // ctx.lineTo(this.x-4, this.y);
+        // ctx.closePath();
+        // ctx.fillStyle = "yellow";
+        // ctx.fill();
+        
     }
 }

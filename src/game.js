@@ -11,6 +11,8 @@ export default class Pacman {
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
         this.restart();
+        // starts with 3 lives
+        this.life = 3;
     }
 
     restart() {
@@ -32,7 +34,12 @@ export default class Pacman {
             this.main.move("up");
         } else if (e.keyCode === 40) {
             this.main.move("down");
-        } 
+        } else if (e.keyCode === 32) {
+            // after losing all three lives
+            this.startedGhost = false;
+            this.life = 3;
+            this.restart();
+        }
  
         // put on end because then there will be lag
         if (!this.startedGhost) {
@@ -47,6 +54,7 @@ export default class Pacman {
         this.ghost.animate(this.ctx);
         this.drawScore();
         this.detectCollision();
+        this.checkWin();
     }
 
     drawScore() {
@@ -57,11 +65,26 @@ export default class Pacman {
         if ((this.main.x === this.ghost.redX && this.main.y === this.ghost.redY) ||
             (this.main.x === this.ghost.pinkX && this.main.y === this.ghost.pinkY) ||
             (this.main.x === this.ghost.orangeX && this.main.y === this.ghost.orangeY) ||
-            (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY) ) {
+            (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY) 
+            && this.life !== 0) {
                 clearInterval(window.myAnimation);
                 this.main.die(this.ctx);
                 this.ghost.removeGhosts(this.ctx);
-                
+                this.restart();
+                this.startedGhost = false;
+                this.life -= 1;
+        } else if (this.life === 0) {
+            // lost all 3 lives
+            clearInterval(window.myAnimation);
+            this.main.die(this.ctx);
+            this.ghost.removeGhosts(this.ctx);
+            this.ctx.font = "24px Comic Sans MS";
+            this.ctx.fillStyle = "red";
+            this.ctx.fillText("Game Over", 240, 400);
         }
+    }
+
+    checkWin() {
+        this.level.win();
     }
 }
