@@ -10,8 +10,8 @@
 - [x] Add ghosts and make the move when pacman first moves
 - [ ] Make pacman die with different sprites (dying animation)
 - [ ] Have three lives showing and decreases each time if pacman collides with a ghost
-- [x] Have a game over screen
-- [ ] Have a won screen
+- [x] Have "game over" text when you lose
+- [x] Have "you won" text when you win
 - [x] Click spacebar to reset game
 - [ ] When pacman eats a bigger dot to turn the ghosts to eatable and earn higher score
 - [ ] Add instructions to the side of the game
