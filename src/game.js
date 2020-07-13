@@ -10,6 +10,7 @@ export default class Pacman {
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
+        this.lives = document.getElementById("lives");
         this.restart();
         // starts with 3 lives
         this.life = 3;
@@ -85,6 +86,10 @@ export default class Pacman {
     }
 
     checkWin() {
-        this.level.win();
+        if (this.level.checkCoins()) {
+            clearInterval(window.myAnimation);
+            this.ctx.font = "30px Arial";
+            this.ctx.fillText("You won!", 250, 270);
+        }
     }
 }

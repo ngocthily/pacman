@@ -437,11 +437,4 @@ export default class Level {
         }
         return true;
     }
-
-    win() {
-        // works
-        if (this.checkCoins()) {
-            console.log("won")
-        }
-    }
 }

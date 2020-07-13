@@ -7,22 +7,33 @@
             text-align: center;
         }
 
-        #pacman-game {
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
+        .pacman-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
         }
+
+        #pacman-game {
+            margin: auto;
+        }
+
     </style>
 </head>
 
 <body>
     <h1>Pacman</h1>
+    <div class="pacman-wrapper">
     <canvas id="pacman-game" height="600" width="600"></canvas>
-    <div class="score-wrapper">
-        Score:
-        <div id="score"></div>
+    <div class="score-lives-wrapper">
+        <div class="score-wrapper">
+            Score:
+            <div id="score"></div>
+        </div>
+        <div class="lives-wrapper">
+            Lives:
+            <div id="lives"></div>
+        </div>
+    </div>
     </div>
 </body>
 

@@ -53,7 +53,7 @@ export default class Ghost {
         loadImage('images/ghosts.png')
             .then(image => {
                 ctx.drawImage(image,
-                    400, 560,
+                    380, 570,
                     180, 180,
                     this.orangeX-13, this.orangeY-13,
                     30, 30)
@@ -160,7 +160,7 @@ export default class Ghost {
             loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        0, 560,
+                        -10, 560,
                         180, 180,
                         this.pinkX - 13, this.pinkY - 13,
                         30, 30)
@@ -178,7 +178,7 @@ export default class Ghost {
             loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        400, 360,
+                        370, 380,
                         180, 180,
                         this.orangeX - 13, this.orangeY - 13,
                         30, 30)
@@ -198,7 +198,7 @@ export default class Ghost {
             loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        580, 560,
+                        580, 570,
                         180, 180,
                         this.orangeX - 13, this.orangeY - 13,
                         30, 30)
@@ -208,7 +208,7 @@ export default class Ghost {
             loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        400, 560,
+                        380, 560,
                         180, 180,
                         this.orangeX - 13, this.orangeY - 13,
                         30, 30)
@@ -226,7 +226,7 @@ export default class Ghost {
             loadImage('images/ghosts.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        380, 0,
+                        380, -10,
                         180, 180,
                         this.blueX - 13, this.blueY - 13,
                         30, 30)
