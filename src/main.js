@@ -13,8 +13,7 @@ export default class Main {
         // starts the mouth at the "widest"
         // and closes mouth first before opening
         this.mouth = 0;
-        this.backwards = false; 
-        this.die = false;
+        this.opening = true;
 
         // sets right to true for its starting position
         this.right = true;
@@ -34,7 +33,7 @@ export default class Main {
     drawCharacter(ctx) {
         // mouth open pacman
         let angleDiff = 0.05;
-        let sub = 5 * angleDiff;
+        let sub = this.mouth * angleDiff;
         ctx.beginPath();
 
         if (this.right) {
@@ -60,6 +59,7 @@ export default class Main {
         this.resetDirection();
         this.clearDirectionIntervals();
 
+
         // handles the walls (boundaries)
         // and lets pacman continuous move in one direction until user clicks a diff arrow key
         if (way === "right") {
@@ -70,6 +70,7 @@ export default class Main {
                     this.x+=30; 
                     this.collectCoin();
                     this.switchSide();
+                    this.moveMouth();
                 } else {
                     clearInterval(this.rightMoves)
                 }}
@@ -82,6 +83,7 @@ export default class Main {
                     this.x -= 30;
                     this.collectCoin();
                     this.switchSide();
+                    this.moveMouth();
                 } else {
                     clearInterval(this.leftMoves)
                 }}
@@ -94,6 +96,7 @@ export default class Main {
                     this.y -= 30;
                     this.collectCoin();
                     this.switchSide();
+                    this.moveMouth();
                 } else {
                     clearInterval(this.upMoves)
                 }}
@@ -106,6 +109,7 @@ export default class Main {
                     this.y += 30;
                     this.collectCoin();
                     this.switchSide();
+                    this.moveMouth();
                 } else {
                     clearInterval(this.downMoves)
                 }}
@@ -113,6 +117,16 @@ export default class Main {
             }
         }
 
+    moveMouth() {
+        // not chomping enough
+        if (this.opening) {
+            this.mouth=5;
+            this.opening = false;
+        } else {
+            this.mouth=0;
+            this.opening = true;
+        }
+    }
     clearDirectionIntervals() {
         clearInterval(this.rightMoves);
         clearInterval(this.leftMoves);
@@ -152,8 +166,10 @@ export default class Main {
         }
     }
 
-    die(ctx) {
+    die() {
         // this is where the dying sprites goes
-        this.die = true;
+        setInterval(() => {
+            this.mouth-=1;
+        }, 300)
     }
 }

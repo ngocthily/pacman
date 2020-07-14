@@ -9,12 +9,9 @@ export default class Pacman {
         this.startedGhost = false;
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
-        window.addEventListener("keyup", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
         this.lives = document.getElementById("lives");
         this.restart();
-        // starts with 3 lives
-        this.life = 3;
     }
 
     restart() {
@@ -44,6 +41,7 @@ export default class Pacman {
         }
  
         // put on end because then there will be lag
+        // press any key to start animation
         if (!this.startedGhost) {
             window.myAnimation = setInterval(() => { this.animate() }, 300);
             this.startedGhost = true;
@@ -54,9 +52,13 @@ export default class Pacman {
         this.level.animate(this.ctx);
         this.main.animate(this.ctx);
         this.ghost.animate(this.ctx);
+
+        this.life = 3;
+        
         this.drawScore();
         this.detectCollision();
         this.checkWin();
+        this.drawLives();
     }
 
     drawScore() {
@@ -70,7 +72,7 @@ export default class Pacman {
             (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY) 
             && this.life !== 0) {
                 clearInterval(window.myAnimation);
-                this.main.die(this.ctx);
+                this.main.die();
                 this.ghost.removeGhosts(this.ctx);
                 this.restart();
                 this.startedGhost = false;
@@ -78,7 +80,7 @@ export default class Pacman {
         } else if (this.life === 0) {
             // lost all 3 lives
             clearInterval(window.myAnimation);
-            this.main.die(this.ctx);
+            this.main.die();
             this.ghost.removeGhosts(this.ctx);
             this.ctx.font = "24px Comic Sans MS";
             this.ctx.fillStyle = "red";
@@ -92,5 +94,9 @@ export default class Pacman {
             this.ctx.font = "30px Arial";
             this.ctx.fillText("You won!", 250, 270);
         }
+    }
+
+    drawLives() {
+        this.lives.innerHTML = this.life;
     }
 }
