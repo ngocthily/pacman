@@ -9,6 +9,7 @@ export default class Pacman {
         this.startedGhost = false;
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
+        window.addEventListener("keyup", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
         this.lives = document.getElementById("lives");
         this.restart();
@@ -26,7 +27,7 @@ export default class Pacman {
 
     registerEvents(e) {
         e.preventDefault();
-
+        
         if (e.keyCode === 39) {
             this.main.move("right");
         } else if (e.keyCode === 37) {
@@ -44,7 +45,7 @@ export default class Pacman {
  
         // put on end because then there will be lag
         if (!this.startedGhost) {
-            window.myAnimation = setInterval(() => { this.animate() }, 1000);
+            window.myAnimation = setInterval(() => { this.animate() }, 300);
             this.startedGhost = true;
         }
     }

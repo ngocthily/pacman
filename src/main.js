@@ -8,10 +8,13 @@ export default class Main {
         this.x = 300;
         this.y = 540;
 
+        this.friction = 0.5;
+
         // starts the mouth at the "widest"
         // and closes mouth first before opening
         this.mouth = 0;
         this.backwards = false; 
+        this.die = false;
 
         // sets right to true for its starting position
         this.right = true;
@@ -36,16 +39,16 @@ export default class Main {
         ctx.beginPath();
 
         if (this.right) {
-            ctx.arc(this.x, this.y, 15, (0.3 - sub) * Math.PI, (1.7 + sub) * Math.PI);
+            ctx.arc(this.x, this.y, 13, (0.3 - sub) * Math.PI, (1.7 + sub) * Math.PI);
             ctx.lineTo(this.x - 4, this.y);
         } else if (this.left) {
-            ctx.arc(this.x, this.y, 15, (1.3 - sub) * Math.PI, (0.7 +sub) * Math.PI);
+            ctx.arc(this.x, this.y, 13, (1.3 - sub) * Math.PI, (0.7 +sub) * Math.PI);
             ctx.lineTo(this.x+4, this.y);
         } else if (this.up) {
-            ctx.arc(this.x, this.y, 15, (1.8-sub) * Math.PI, (1.2+sub) * Math.PI);
+            ctx.arc(this.x, this.y, 13, (1.8-sub) * Math.PI, (1.2+sub) * Math.PI);
             ctx.lineTo(this.x, this.y+4);
         } else if (this.down) {
-            ctx.arc(this.x, this.y, 15, (0.8-sub) * Math.PI, (0.2+sub) * Math.PI);
+            ctx.arc(this.x, this.y, 13, (0.8-sub) * Math.PI, (0.2+sub) * Math.PI);
             ctx.lineTo(this.x, this.y- 4);
         }
 
@@ -55,47 +58,85 @@ export default class Main {
     }
 
     move(way) {
-        if (this.mouth === 0) {
-            this.backwards = false;
-        } else if (this.mouth === 5) {
-            this.backwards = true;
-        }
-
-        if (this.backwards === true) {
-            this.mouth -= 1;
-        } else {
-            this.mouth += 1;
-        }
+        // if (this.mouth === 0) {
+        //     const closing = setInterval(() => 
+        //             { this.mouth += 1;
+        //                 if (this.mouth === 5) {
+        //                     clearInterval(closing)
+        //                 }
+        //             }, 500);
+        // }
+        
+        // setTimeout(() => {
+        //     this.mouth = 5;
+        //     const opening = setInterval(() => {
+        //         this.mouth -= 1;
+        //         if (this.mouth === 0) {
+        //             clearInterval(opening)
+        //         }
+        //     }, 500)}, 3000);
 
         this.resetDirection();
-        this.switchSide();
-        this.collectCoin();
+        this.clearDirectionIntervals();
 
+        // handles the walls (boundaries)
+        // and lets pacman continuous move in one direction until user clicks a diff arrow key
         if (way === "right") {
-            if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x  / 30)] !== 1
-                && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30)] !== 1) {
-                this.x+=30;
-            }
             this.right = true;
+            this.rightMoves = setInterval(() => 
+            { if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30)] !== 1
+                && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30)] !== 1) {
+                    this.x+=30; 
+                    this.collectCoin();
+                    this.switchSide();
+                } else {
+                    clearInterval(this.rightMoves)
+                }}
+                , 300)
         } else if (way === "left") {
-            if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30) - 2] !== 1
-                && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30) - 2] !== 1) {
-                this.x-=30;
-            }
             this.left = true;
+            this.leftMoves = setInterval(() => 
+            { if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30) - 2] !== 1
+                && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30) - 2] !== 1) {
+                    this.x -= 30;
+                    this.collectCoin();
+                    this.switchSide();
+                } else {
+                    clearInterval(this.leftMoves)
+                }}
+                ,300)
         } else if (way === "up") {
-            if (this.board[Math.round(this.y / 30) - 2][Math.round(this.x / 30) - 1] !== 1
-                && this.board[Math.floor(this.y / 30) - 2][Math.floor(this.x / 30) - 1] !== 1) {
-                this.y-=30;
-            }
             this.up = true;
+            this.upMoves = setInterval(() => 
+            { if (this.board[Math.round(this.y / 30) - 2][Math.round(this.x / 30) - 1] !== 1
+                && this.board[Math.floor(this.y / 30) - 2][Math.floor(this.x / 30) - 1] !== 1) {
+                    this.y -= 30;
+                    this.collectCoin();
+                    this.switchSide();
+                } else {
+                    clearInterval(this.upMoves)
+                }}
+                , 300)
         } else if (way === "down") {
-            if (this.board[Math.round(this.y / 30)][Math.round(this.x / 30) - 1] !== 1
-                && this.board[Math.floor(this.y / 30)][Math.floor(this.x / 30) - 1] !== 1) {
-                this.y+=30;
-            }
             this.down = true;
+            this.downMoves = setInterval(() => 
+            { if (this.board[Math.round(this.y / 30)][Math.round(this.x / 30) - 1] !== 1
+                && this.board[Math.floor(this.y / 30)][Math.floor(this.x / 30) - 1] !== 1) {
+                    this.y += 30;
+                    this.collectCoin();
+                    this.switchSide();
+                } else {
+                    clearInterval(this.downMoves)
+                }}
+                , 300)
+            }
         }
+
+    clearDirectionIntervals() {
+        clearInterval(this.rightMoves);
+        clearInterval(this.leftMoves);
+        clearInterval(this.upMoves);
+        clearInterval(this.downMoves);
     }
 
     resetDirection() {
@@ -106,14 +147,11 @@ export default class Main {
     }
     
     switchSide() {
-        console.log("x-coordinate")
         console.log(this.x)
-        console.log("y-coordinate")
-        console.log(this.y)
-        if (this.x === 30 && 295 <= this.y && this.y <= 310) {
-            this.x = 565;
-        } else if (this.x === 565 && 295 <= this.y && this.y <= 310) {
-            this.x = 30;
+        if (this.x === 35 && 295 <= this.y && this.y <= 310) {
+            this.x = 570;
+        } else if (this.x === 570 && 295 <= this.y && this.y <= 310) {
+            this.x = 35;
         }
     }
 
@@ -136,12 +174,6 @@ export default class Main {
 
     die(ctx) {
         // this is where the dying sprites goes
-        // ctx.beginPath();
-        // ctx.arc(this.x, this.y, 15, 0 * Math.PI, 2 * Math.PI);
-        // ctx.lineTo(this.x-4, this.y);
-        // ctx.closePath();
-        // ctx.fillStyle = "yellow";
-        // ctx.fill();
-        
+        this.die = true;
     }
 }
