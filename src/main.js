@@ -33,9 +33,8 @@ export default class Main {
 
     drawCharacter(ctx) {
         // mouth open pacman
-        // pacman has weird white outline because i added the stoke to white in level (TEMP)
         let angleDiff = 0.05;
-        let sub = this.mouth * angleDiff;
+        let sub = 5 * angleDiff;
         ctx.beginPath();
 
         if (this.right) {
@@ -58,24 +57,6 @@ export default class Main {
     }
 
     move(way) {
-        // if (this.mouth === 0) {
-        //     const closing = setInterval(() => 
-        //             { this.mouth += 1;
-        //                 if (this.mouth === 5) {
-        //                     clearInterval(closing)
-        //                 }
-        //             }, 500);
-        // }
-        
-        // setTimeout(() => {
-        //     this.mouth = 5;
-        //     const opening = setInterval(() => {
-        //         this.mouth -= 1;
-        //         if (this.mouth === 0) {
-        //             clearInterval(opening)
-        //         }
-        //     }, 500)}, 3000);
-
         this.resetDirection();
         this.clearDirectionIntervals();
 
@@ -147,11 +128,10 @@ export default class Main {
     }
     
     switchSide() {
-        console.log(this.x)
-        if (this.x === 35 && 295 <= this.y && this.y <= 310) {
+        if (this.x === 30 && 295 <= this.y && this.y <= 310) {
             this.x = 570;
         } else if (this.x === 570 && 295 <= this.y && this.y <= 310) {
-            this.x = 35;
+            this.x = 30;
         }
     }
 

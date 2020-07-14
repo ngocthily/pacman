@@ -43,14 +43,14 @@ export default class Level {
         ctx.beginPath();
         ctx.moveTo(30,30);
         ctx.lineTo(570,30);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // inner
         ctx.beginPath();
         ctx.moveTo(40, 40);
         ctx.lineTo(560, 40);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
         
 
@@ -62,7 +62,7 @@ export default class Level {
         ctx.lineTo(120, 240);
         ctx.lineTo(120, 270);
         ctx.lineTo(20, 270);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         ctx.beginPath();
@@ -71,7 +71,7 @@ export default class Level {
         ctx.lineTo(120, 360);
         ctx.lineTo(30, 360);
         ctx.lineTo(30, 570);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // inner
@@ -81,7 +81,7 @@ export default class Level {
         ctx.lineTo(130, 230);
         ctx.lineTo(130, 280);
         ctx.lineTo(20, 280);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         ctx.beginPath();
@@ -91,14 +91,14 @@ export default class Level {
         ctx.lineTo(40, 370);
         ctx.lineTo(40, 560);
         ctx.lineTo(560, 560);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // outer
         ctx.beginPath();
         ctx.moveTo(30, 570);
         ctx.lineTo(570, 570);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // right
@@ -109,7 +109,7 @@ export default class Level {
         ctx.lineTo(470, 230);
         ctx.lineTo(470, 280);
         ctx.lineTo(580, 280);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         ctx.beginPath();
@@ -118,7 +118,7 @@ export default class Level {
         ctx.lineTo(470, 370);
         ctx.lineTo(560, 370);
         ctx.lineTo(560, 560);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // outer
@@ -128,7 +128,7 @@ export default class Level {
         ctx.lineTo(480, 240);
         ctx.lineTo(480, 270);
         ctx.lineTo(580, 270);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         ctx.beginPath();
@@ -137,7 +137,7 @@ export default class Level {
         ctx.lineTo(480, 360);
         ctx.lineTo(570, 360);
         ctx.lineTo(570, 570);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
     }   
 
@@ -154,7 +154,7 @@ export default class Level {
         ctx.lineTo(140, 190);
         ctx.lineTo(160, 190);
         ctx.lineTo(160, 80);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // letter g
@@ -171,7 +171,7 @@ export default class Level {
         ctx.lineTo(220, 100);
         ctx.lineTo(280, 100);
         ctx.lineTo(280, 80);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // letter O
@@ -186,7 +186,7 @@ export default class Level {
         ctx.lineTo(370, 160);
         ctx.lineTo(350, 160);
         ctx.lineTo(350, 110);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // letter c
@@ -200,7 +200,7 @@ export default class Level {
         ctx.lineTo(520, 190);
         ctx.lineTo(440, 190);
         ctx.lineTo(440, 80);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // left line to rectangle
@@ -210,7 +210,7 @@ export default class Level {
         ctx.lineTo(190, 370);
         ctx.lineTo(170, 370);
         ctx.lineTo(170, 230);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // rectangle with ghosts insides
@@ -220,14 +220,14 @@ export default class Level {
         ctx.beginPath();
         ctx.moveTo(230, 230);
         ctx.lineTo(280, 230);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // inner
         ctx.beginPath();
         ctx.moveTo(240, 240);
         ctx.lineTo(280, 240);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // white part
@@ -239,14 +239,14 @@ export default class Level {
         ctx.beginPath();
         ctx.moveTo(320, 230);
         ctx.lineTo(370, 230);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // inner
         ctx.beginPath();
         ctx.moveTo(320, 240);
         ctx.lineTo(360, 240);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // rest
@@ -256,7 +256,7 @@ export default class Level {
         ctx.lineTo(370, 370);
         ctx.lineTo(230, 370);
         ctx.lineTo(230, 230);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // inner
@@ -265,7 +265,7 @@ export default class Level {
         ctx.lineTo(360, 360);
         ctx.lineTo(240, 360);
         ctx.lineTo(240, 240);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // right rectangle
@@ -275,7 +275,7 @@ export default class Level {
         ctx.lineTo(430, 370);
         ctx.lineTo(430, 230);
         ctx.lineTo(410, 230);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         // lower letters
@@ -296,7 +296,7 @@ export default class Level {
         ctx.lineTo(110, 440);
         ctx.lineTo(140, 440);
         ctx.lineTo(140, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // h
@@ -313,7 +313,7 @@ export default class Level {
         ctx.lineTo(230, 520);
         ctx.lineTo(230, 410);
         ctx.lineTo(250, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // i 
@@ -324,7 +324,7 @@ export default class Level {
         ctx.lineTo(370, 430);
         ctx.lineTo(370, 410);
         ctx.lineTo(350, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         ctx.beginPath();
@@ -333,7 +333,7 @@ export default class Level {
         ctx.lineTo(370, 520);
         ctx.lineTo(350, 520);
         ctx.lineTo(350, 470);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // letter l
@@ -343,7 +343,7 @@ export default class Level {
         ctx.lineTo(430, 520);
         ctx.lineTo(410, 520);
         ctx.lineTo(410, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // letter y
@@ -361,7 +361,7 @@ export default class Level {
         ctx.lineTo(500, 460);
         ctx.lineTo(470, 460);
         ctx.lineTo(470, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#fe00cf";
         ctx.stroke();
 
         // fill in spots so no more two squares next to one
@@ -372,7 +372,7 @@ export default class Level {
         ctx.lineTo(100, 460);
         ctx.lineTo(80, 460);
         ctx.lineTo(80, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         ctx.beginPath();
@@ -381,7 +381,7 @@ export default class Level {
         ctx.lineTo(100, 520);
         ctx.lineTo(80, 520);
         ctx.lineTo(80, 470);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         ctx.beginPath();
@@ -390,7 +390,7 @@ export default class Level {
         ctx.lineTo(220, 430);
         ctx.lineTo(200, 430);
         ctx.lineTo(200, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
 
         ctx.beginPath();
@@ -399,7 +399,7 @@ export default class Level {
         ctx.lineTo(310, 430);
         ctx.lineTo(290, 430);
         ctx.lineTo(290, 410);
-        ctx.strokeStyle = "#bc13fe";
+        ctx.strokeStyle = "#be00fe";
         ctx.stroke();
     }
 
