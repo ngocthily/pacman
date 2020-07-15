@@ -9,7 +9,7 @@
 - [x] Animate pacman so it looks like he's eating
 - [x] Let pacman move from the left end to the right end or vice versa through the tunnel
 - [x] Add ghosts and make the move when pacman first moves
-- [ ] Make pacman die with different sprites (dying animation)
+- [x] Make pacman die with different sprites (dying animation)
 - [x] Have three lives showing and decreases each time if pacman collides with a ghost
 - [x] Have "game over" text when you lose
 - [x] Have "you won" text when you win
