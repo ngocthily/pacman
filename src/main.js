@@ -57,6 +57,7 @@ export default class Main {
 
     move(way) {
         this.resetDirection();
+        this.scoreKeep = false;
         // handles the walls (boundaries)
         // and lets pacman continuous move in one direction until user clicks a diff arrow key
         if (way === "right") {
@@ -67,6 +68,7 @@ export default class Main {
                     this.switchSide();
                     this.moveMouth();
                     this.collectCoin();
+                    this.scoreKeep = true;
             }
         } else if (way === "left") {
             this.left = true;
@@ -76,6 +78,7 @@ export default class Main {
                 this.switchSide();
                 this.moveMouth();
                 this.collectCoin();
+                this.scoreKeep = true;
             }
         } else if (way === "up") {
             this.up = true;
@@ -85,6 +88,7 @@ export default class Main {
                 this.switchSide();
                 this.moveMouth();
                 this.collectCoin();
+                this.scoreKeep = true;
             }
 
         } else if (way === "down") {
@@ -95,6 +99,7 @@ export default class Main {
                 this.switchSide();
                 this.moveMouth();
                 this.collectCoin();
+                this.scoreKeep = true;
             }
         }
     }
@@ -144,8 +149,7 @@ export default class Main {
     die() {
         // this is where the dying sprites goes
         // console.log(this.mouth)
-        // this.mouth -= 1;
-        // setInterval(() => {this.mouth += 1}, 300)
+        this.mouth -= 1;
     }
 
 }

@@ -9,6 +9,7 @@ export default class Pacman {
 
         this.startedGhost = false;
         this.life = 3;
+        this.totalScore = 0;
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
@@ -20,7 +21,7 @@ export default class Pacman {
         this.level = new Level(this.dimensions);
         this.main = new Main(this.dimensions);
         this.ghost = new Ghost(this.dimensions);
-
+        
         this.animate();
     }
 
@@ -39,13 +40,21 @@ export default class Pacman {
         setInterval(() => { this.detectCollision() }, 300);
 
         if (e.keyCode === 39) {
-            window.rightMoves = setInterval(() => {this.main.move("right")}, 300);
+            window.rightMoves = setInterval(() => {
+                this.main.move("right");
+            }, 300);
         } else if (e.keyCode === 37) {
-            window.leftMoves = setInterval(() => {this.main.move("left")}, 300);
+            window.leftMoves = setInterval(() => {
+                this.main.move("left");
+            }, 300);
         } else if (e.keyCode === 38) {
-            window.upMoves = setInterval(() => {this.main.move("up")}, 300);
+            window.upMoves = setInterval(() => {
+                this.main.move("up");
+            }, 300);
         } else if (e.keyCode === 40) {
-            window.downMoves = setInterval(() => {this.main.move("down")}, 300);
+            window.downMoves = setInterval(() => {
+                this.main.move("down");
+            }, 300);
         } else if (e.keyCode === 32) {
             // after losing all three lives
             this.startedGhost = false;
@@ -72,16 +81,23 @@ export default class Pacman {
     }
 
     drawScore() {
-        this.score.innerHTML = this.main.score;
+        // Adds on the score from the previous try
+        if (this.totalScore < this.main.score) {
+            this.score.innerHTML = this.main.score;
+        } else {
+            this.score.innerHTML = this.totalScore + this.main.score;
+        }
     }
 
     detectCollision() {
         if ( this.sameSpot()
             && this.life !== 0) {
+                this.totalScore += this.main.score;
                 clearInterval(window.myAnimation);
                 // dying sprites before going back to original spot
                 this.ghost.removeGhosts();
-                // this.main.die();
+                // for(let i)
+                // setInterval(() => this.main.mouth -= 1)
                 this.startedGhost = false;
                 this.life -= 1;
                 // clear interval here again cause when pacman dies and restarts he will
