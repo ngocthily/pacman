@@ -18,6 +18,8 @@ export default class Pacman {
     }
 
     restart() {
+        this.listen = true;
+
         this.level = new Level(this.dimensions);
         this.main = new Main(this.dimensions);
         this.ghost = new Ghost(this.dimensions);
@@ -38,28 +40,29 @@ export default class Pacman {
 
         // checks detection of collision with another ghost every time it moves
         setInterval(() => { this.detectCollision() }, 300);
-
-        if (e.keyCode === 39) {
-            window.rightMoves = setInterval(() => {
-                this.main.move("right");
-            }, 300);
-        } else if (e.keyCode === 37) {
-            window.leftMoves = setInterval(() => {
-                this.main.move("left");
-            }, 300);
-        } else if (e.keyCode === 38) {
-            window.upMoves = setInterval(() => {
-                this.main.move("up");
-            }, 300);
-        } else if (e.keyCode === 40) {
-            window.downMoves = setInterval(() => {
-                this.main.move("down");
-            }, 300);
-        } else if (e.keyCode === 32) {
-            // after losing all three lives
-            this.startedGhost = false;
-            this.life = 3;
-            this.restart();
+        if (this.listen) {
+            if (e.keyCode === 39) {
+                window.rightMoves = setInterval(() => {
+                    this.main.move("right");
+                }, 300);
+            } else if (e.keyCode === 37) {
+                window.leftMoves = setInterval(() => {
+                    this.main.move("left");
+                }, 300);
+            } else if (e.keyCode === 38) {
+                window.upMoves = setInterval(() => {
+                    this.main.move("up");
+                }, 300);
+            } else if (e.keyCode === 40) {
+                window.downMoves = setInterval(() => {
+                    this.main.move("down");
+                }, 300);
+            } else if (e.keyCode === 32) {
+                // after losing all three lives
+                this.startedGhost = false;
+                this.life = 3;
+                this.restart();
+            }
         }
  
         // put on end because then there will be lag
@@ -101,6 +104,7 @@ export default class Pacman {
                 // pacman dying animation
                 // disable moving while pacman is dying!!
                 window.dying = setInterval(() => {
+                    this.listen = false;
                     this.main.mouth -= 1;
                     // need to overlay background each time or else pacman will overlay its old one
                     this.level.animate(this.ctx);
@@ -120,7 +124,7 @@ export default class Pacman {
                 clearInterval(window.leftMoves);
                 clearInterval(window.upMoves);
                 clearInterval(window.downMoves);
-                setTimeout(() => {this.restart()}, 3000)
+                setTimeout(() => {this.restart()}, 3000);
             } else if (this.life === 0) {
             // lost all 3 lives
             // when game over remove pacman
