@@ -94,10 +94,24 @@ export default class Pacman {
             && this.life !== 0) {
                 this.totalScore += this.main.score;
                 clearInterval(window.myAnimation);
-                // dying sprites before going back to original spot
+                // keep this because if you remove it the ghosts will still be detected
+                // this.sameSpot() will keep returning true
+                // we move them off the canvas
                 this.ghost.removeGhosts();
-                // for(let i)
-                // setInterval(() => this.main.mouth -= 1)
+                // pacman dying animation
+                // disable moving while pacman is dying!!
+                window.dying = setInterval(() => {
+                    this.main.mouth -= 1;
+                    // need to overlay background each time or else pacman will overlay its old one
+                    this.level.animate(this.ctx);
+                    this.main.animate(this.ctx)
+                    if (this.main.mouth === -12) {
+                        clearInterval(window.dying);
+                        this.level.animate(this.ctx);
+                        this.main.dead = true;
+                        this.main.animate(this.ctx)
+                    }
+                }, 100)
                 this.startedGhost = false;
                 this.life -= 1;
                 // clear interval here again cause when pacman dies and restarts he will
@@ -106,7 +120,7 @@ export default class Pacman {
                 clearInterval(window.leftMoves);
                 clearInterval(window.upMoves);
                 clearInterval(window.downMoves);
-                this.restart();
+                setTimeout(() => {this.restart()}, 3000)
             } else if (this.life === 0) {
             // lost all 3 lives
             // when game over remove pacman
@@ -115,7 +129,7 @@ export default class Pacman {
             // this.main.die();
             this.ctx.font = "24px Comic Sans MS";
             this.ctx.fillStyle = "red";
-            this.ctx.fillText("Game Over", 240, 400);
+            setTimeout(() => {this.ctx.fillText("Game Over", 240, 400)}, 3000);
         }
     }
 
@@ -135,6 +149,7 @@ export default class Pacman {
     }
 
     drawLives() {
+        // edit to have pacman images
         this.lives.innerHTML = this.life;
     }
 }

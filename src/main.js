@@ -14,6 +14,8 @@ export default class Main {
         // and closes mouth first before opening
         this.mouth = 0;
         this.opening = true;
+        this.dead = false;
+        this.phrase = 1;
 
         // sets right to true for its starting position
         this.right = true;
@@ -36,6 +38,28 @@ export default class Main {
         let sub = this.mouth * angleDiff;
         ctx.beginPath();
 
+        if (this.dead) {
+            this.resetDirection();
+            ctx.moveTo(this.x + 5, this.y + 5);
+            ctx.lineTo(this.x + 10, this.y + 10);
+            ctx.moveTo(this.x - 5, this.y - 5);
+            ctx.lineTo(this.x - 10, this.y - 10);
+            ctx.moveTo(this.x + 5, this.y - 5);
+            ctx.lineTo(this.x + 10, this.y - 10);
+            ctx.moveTo(this.x - 5, this.y + 5);
+            ctx.lineTo(this.x - 10, this.y + 10);
+            ctx.moveTo(this.x + 5, this.y);
+            ctx.lineTo(this.x + 10, this.y);
+            ctx.moveTo(this.x - 5, this.y);
+            ctx.lineTo(this.x - 10, this.y);
+            ctx.moveTo(this.x, this.y + 5);
+            ctx.lineTo(this.x, this.y + 10);
+            ctx.moveTo(this.x, this.y - 5);
+            ctx.lineTo(this.x, this.y - 10);
+            ctx.strokeStyle = "yellow";
+            ctx.stroke();
+        }
+
         if (this.right) {
             ctx.arc(this.x, this.y, 13, (0.3 - sub) * Math.PI, (1.7 + sub) * Math.PI);
             ctx.lineTo(this.x - 4, this.y);
@@ -57,7 +81,6 @@ export default class Main {
 
     move(way) {
         this.resetDirection();
-        this.scoreKeep = false;
         // handles the walls (boundaries)
         // and lets pacman continuous move in one direction until user clicks a diff arrow key
         if (way === "right") {
@@ -68,7 +91,6 @@ export default class Main {
                     this.switchSide();
                     this.moveMouth();
                     this.collectCoin();
-                    this.scoreKeep = true;
             }
         } else if (way === "left") {
             this.left = true;
@@ -78,7 +100,6 @@ export default class Main {
                 this.switchSide();
                 this.moveMouth();
                 this.collectCoin();
-                this.scoreKeep = true;
             }
         } else if (way === "up") {
             this.up = true;
@@ -88,7 +109,6 @@ export default class Main {
                 this.switchSide();
                 this.moveMouth();
                 this.collectCoin();
-                this.scoreKeep = true;
             }
 
         } else if (way === "down") {
@@ -99,7 +119,6 @@ export default class Main {
                 this.switchSide();
                 this.moveMouth();
                 this.collectCoin();
-                this.scoreKeep = true;
             }
         }
     }
@@ -141,15 +160,10 @@ export default class Main {
             } else if (this.board[(this.y / 30) - 1][(this.x / 30) - 1] === 3) {
                 this.board[(this.y / 30) - 1][(this.x / 30) - 1] = 0;
                 this.score += 50;
+                console.log("ate a big one")
                 // big dots are worth 50 each
             }
         }
-    }
-
-    die() {
-        // this is where the dying sprites goes
-        // console.log(this.mouth)
-        this.mouth -= 1;
     }
 
 }
