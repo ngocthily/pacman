@@ -6,7 +6,9 @@ export default class Pacman {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
+
         this.startedGhost = false;
+        this.life = 3;
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
@@ -25,14 +27,25 @@ export default class Pacman {
     registerEvents(e) {
         e.preventDefault();
         
+        // needs to be window so we can clear it when pacman loses a game
+        // clear interval here or else pacman will move in diagonals for not clearing previous setInterval
+        // so it causes a bunch of setintervals to go together
+        clearInterval(window.rightMoves);
+        clearInterval(window.leftMoves);
+        clearInterval(window.upMoves);
+        clearInterval(window.downMoves);
+
+        // checks detection of collision with another ghost every time it moves
+        setInterval(() => { this.detectCollision() }, 300);
+
         if (e.keyCode === 39) {
-            this.main.move("right");
+            window.rightMoves = setInterval(() => {this.main.move("right")}, 300);
         } else if (e.keyCode === 37) {
-            this.main.move("left");
+            window.leftMoves = setInterval(() => {this.main.move("left")}, 300);
         } else if (e.keyCode === 38) {
-            this.main.move("up");
+            window.upMoves = setInterval(() => {this.main.move("up")}, 300);
         } else if (e.keyCode === 40) {
-            this.main.move("down");
+            window.downMoves = setInterval(() => {this.main.move("down")}, 300);
         } else if (e.keyCode === 32) {
             // after losing all three lives
             this.startedGhost = false;
@@ -53,10 +66,7 @@ export default class Pacman {
         this.main.animate(this.ctx);
         this.ghost.animate(this.ctx);
 
-        this.life = 3;
-        
         this.drawScore();
-        this.detectCollision();
         this.checkWin();
         this.drawLives();
     }
@@ -66,26 +76,38 @@ export default class Pacman {
     }
 
     detectCollision() {
-        if ((this.main.x === this.ghost.redX && this.main.y === this.ghost.redY) ||
-            (this.main.x === this.ghost.pinkX && this.main.y === this.ghost.pinkY) ||
-            (this.main.x === this.ghost.orangeX && this.main.y === this.ghost.orangeY) ||
-            (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY) 
+        if ( this.sameSpot()
             && this.life !== 0) {
                 clearInterval(window.myAnimation);
-                this.main.die();
-                this.ghost.removeGhosts(this.ctx);
-                this.restart();
+                // dying sprites before going back to original spot
+                this.main.removeMain();
+                this.ghost.removeGhosts();
                 this.startedGhost = false;
                 this.life -= 1;
-        } else if (this.life === 0) {
+                // clear interval here again cause when pacman dies and restarts he will
+                // move a certain amount in the last direction if went if possible
+                clearInterval(window.rightMoves);
+                clearInterval(window.leftMoves);
+                clearInterval(window.upMoves);
+                clearInterval(window.downMoves);
+                this.restart();
+            } else if (this.life === 0) {
             // lost all 3 lives
+            // when game over remove pacman
             clearInterval(window.myAnimation);
-            this.main.die();
+            this.main.removeMain();
             this.ghost.removeGhosts(this.ctx);
             this.ctx.font = "24px Comic Sans MS";
             this.ctx.fillStyle = "red";
             this.ctx.fillText("Game Over", 240, 400);
         }
+    }
+
+    sameSpot() {
+        return (this.main.x === this.ghost.redX && this.main.y === this.ghost.redY) ||
+            (this.main.x === this.ghost.pinkX && this.main.y === this.ghost.pinkY) ||
+            (this.main.x === this.ghost.orangeX && this.main.y === this.ghost.orangeY) ||
+            (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY) 
     }
 
     checkWin() {

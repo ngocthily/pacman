@@ -57,68 +57,49 @@ export default class Main {
 
     move(way) {
         this.resetDirection();
-        this.clearDirectionIntervals();
-
-
         // handles the walls (boundaries)
         // and lets pacman continuous move in one direction until user clicks a diff arrow key
         if (way === "right") {
             this.right = true;
-            this.rightMoves = setInterval(() => 
-            { if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30)] !== 1
+            if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30)] !== 1
                 && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30)] !== 1) {
-                    this.x+=30; 
-                    this.collectCoin();
+                    this.x+=30;
                     this.switchSide();
                     this.moveMouth();
-                } else {
-                    clearInterval(this.rightMoves)
-                }}
-                , 300)
+                    this.collectCoin();
+            }
         } else if (way === "left") {
             this.left = true;
-            this.leftMoves = setInterval(() => 
-            { if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30) - 2] !== 1
+            if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30) - 2] !== 1
                 && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30) - 2] !== 1) {
-                    this.x -= 30;
-                    this.collectCoin();
-                    this.switchSide();
-                    this.moveMouth();
-                } else {
-                    clearInterval(this.leftMoves)
-                }}
-                ,300)
+                this.x -= 30;
+                this.switchSide();
+                this.moveMouth();
+                this.collectCoin();
+            }
         } else if (way === "up") {
             this.up = true;
-            this.upMoves = setInterval(() => 
-            { if (this.board[Math.round(this.y / 30) - 2][Math.round(this.x / 30) - 1] !== 1
+            if (this.board[Math.round(this.y / 30) - 2][Math.round(this.x / 30) - 1] !== 1
                 && this.board[Math.floor(this.y / 30) - 2][Math.floor(this.x / 30) - 1] !== 1) {
-                    this.y -= 30;
-                    this.collectCoin();
-                    this.switchSide();
-                    this.moveMouth();
-                } else {
-                    clearInterval(this.upMoves)
-                }}
-                , 300)
+                this.y -= 30;
+                this.switchSide();
+                this.moveMouth();
+                this.collectCoin();
+            }
+
         } else if (way === "down") {
             this.down = true;
-            this.downMoves = setInterval(() => 
-            { if (this.board[Math.round(this.y / 30)][Math.round(this.x / 30) - 1] !== 1
+            if (this.board[Math.round(this.y / 30)][Math.round(this.x / 30) - 1] !== 1
                 && this.board[Math.floor(this.y / 30)][Math.floor(this.x / 30) - 1] !== 1) {
-                    this.y += 30;
-                    this.collectCoin();
-                    this.switchSide();
-                    this.moveMouth();
-                } else {
-                    clearInterval(this.downMoves)
-                }}
-                , 300)
+                this.y += 30;
+                this.switchSide();
+                this.moveMouth();
+                this.collectCoin();
             }
         }
+    }
 
     moveMouth() {
-        // not chomping enough
         if (this.opening) {
             this.mouth=5;
             this.opening = false;
@@ -126,12 +107,6 @@ export default class Main {
             this.mouth=0;
             this.opening = true;
         }
-    }
-    clearDirectionIntervals() {
-        clearInterval(this.rightMoves);
-        clearInterval(this.leftMoves);
-        clearInterval(this.upMoves);
-        clearInterval(this.downMoves);
     }
 
     resetDirection() {
@@ -166,10 +141,16 @@ export default class Main {
         }
     }
 
-    die() {
-        // this is where the dying sprites goes
-        setInterval(() => {
-            this.mouth-=1;
-        }, 300)
+    removeMain() {
+        // moves it off canvas or else it still thinks it's there
+        // causes issues with eating coins
+        this.x = 1000;
     }
+
+    // die(ctx) {
+    //     // this is where the dying sprites goes
+    //     // console.log(this.mouth)
+    //     // this.mouth -= 1;
+    //     this.x =loc;
+    // }
 }
