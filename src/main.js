@@ -141,16 +141,11 @@ export default class Main {
         }
     }
 
-    removeMain() {
-        // moves it off canvas or else it still thinks it's there
-        // causes issues with eating coins
-        this.x = 1000;
+    die() {
+        // this is where the dying sprites goes
+        // console.log(this.mouth)
+        // this.mouth -= 1;
+        // setInterval(() => {this.mouth += 1}, 300)
     }
 
-    // die(ctx) {
-    //     // this is where the dying sprites goes
-    //     // console.log(this.mouth)
-    //     // this.mouth -= 1;
-    //     this.x =loc;
-    // }
 }

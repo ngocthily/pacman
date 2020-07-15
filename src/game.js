@@ -80,8 +80,8 @@ export default class Pacman {
             && this.life !== 0) {
                 clearInterval(window.myAnimation);
                 // dying sprites before going back to original spot
-                this.main.removeMain();
                 this.ghost.removeGhosts();
+                // this.main.die();
                 this.startedGhost = false;
                 this.life -= 1;
                 // clear interval here again cause when pacman dies and restarts he will
@@ -95,8 +95,8 @@ export default class Pacman {
             // lost all 3 lives
             // when game over remove pacman
             clearInterval(window.myAnimation);
-            this.main.removeMain();
             this.ghost.removeGhosts(this.ctx);
+            // this.main.die();
             this.ctx.font = "24px Comic Sans MS";
             this.ctx.fillStyle = "red";
             this.ctx.fillText("Game Over", 240, 400);
