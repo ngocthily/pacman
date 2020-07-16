@@ -27,7 +27,10 @@ export default class Ghost {
         this.blueExit();
 
         // turns to vulnerable ghost
-        this.vulnerable = false;
+        this.redVulnerable = false;
+        this.pinkVulnerable = false;
+        this.orangeVulnerable = false;
+        this.blueVulnerable = false;
     }
 
     animate(ctx) {
@@ -79,7 +82,7 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (!this.vulnerable) {
+        if (!this.redVulnerable) {
             if (this.redMap[((this.redY) / 30) - 1][((this.redX + 30) / 30) - 1] === 1) {
                 this.redX += 30;
                 loadImage('images/ghosts.png')
@@ -124,7 +127,7 @@ export default class Ghost {
         }
 
         // opposite direction and vulnerable
-        if (this.vulnerable) {
+        if (this.redVulnerable) {
             loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,
@@ -150,7 +153,7 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (!this.vulnerable) {
+        if (!this.pinkVulnerable) {
             if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX + 30) / 30) - 1] === 1) {
                 this.pinkX += 30;
                 loadImage('images/ghosts.png')
@@ -194,7 +197,7 @@ export default class Ghost {
             }
         }
 
-        if (this.vulnerable) {
+        if (this.pinkVulnerable) {
             loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,
@@ -220,7 +223,7 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (!this.vulnerable) {
+        if (!this.orangeVulnerable) {
             if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX + 30) / 30) - 1] === 1) {
                 this.orangeX += 30;
                 loadImage('images/ghosts.png')
@@ -264,7 +267,7 @@ export default class Ghost {
             }
         }
 
-        if (this.vulnerable) {
+        if (this.orangeVulnerable) {
             loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,
@@ -290,7 +293,7 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (!this.vulnerable) {
+        if (!this.blueVulnerable) {
             if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX + 30) / 30) - 1] === 1) {
                 this.blueX += 30;
                 loadImage('images/ghosts.png')
@@ -334,7 +337,7 @@ export default class Ghost {
             }
         }
 
-        if (this.vulnerable) {
+        if (this.blueVulnerable) {
             loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,

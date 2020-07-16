@@ -10,6 +10,7 @@ export default class Pacman {
         this.startedGhost = false;
         this.life = 3;
         this.totalScore = 0;
+        this.vulnerable = false;
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
@@ -45,8 +46,8 @@ export default class Pacman {
                 window.rightMoves = setInterval(() => {
                     this.main.move("right");
                     if (this.main.turnGhost) {
-                        this.ghost.vulnerable = true;
-                        setTimeout(() => {this.ghost.vulnerable = false}, 13000);
+                        this.turnAllGhostsVulnerable();
+                        setTimeout(() => { this.turnGhostsBackNormal()}, 13000);
                     }
                     this.main.turnGhost = false;
                 }, 300);
@@ -54,8 +55,8 @@ export default class Pacman {
                 window.leftMoves = setInterval(() => {
                     this.main.move("left");
                     if (this.main.turnGhost) {
-                        this.ghost.vulnerable = true;
-                        setTimeout(() => { this.ghost.vulnerable = false }, 13000);
+                        this.turnAllGhostsVulnerable();
+                        setTimeout(() => { this.turnGhostsBackNormal()}, 13000);
                     }
                     this.main.turnGhost = false;
                 }, 300);
@@ -63,8 +64,8 @@ export default class Pacman {
                 window.upMoves = setInterval(() => {
                     this.main.move("up");
                     if (this.main.turnGhost) {
-                        this.ghost.vulnerable = true;
-                        setTimeout(() => { this.ghost.vulnerable = false }, 13000);
+                        this.turnAllGhostsVulnerable();
+                        setTimeout(() => { this.turnGhostsBackNormal() }, 13000);
                     }
                     this.main.turnGhost = false;
                 }, 300);
@@ -72,8 +73,8 @@ export default class Pacman {
                 window.downMoves = setInterval(() => {
                     this.main.move("down");
                     if (this.main.turnGhost) {
-                        this.ghost.vulnerable = true;
-                        setTimeout(() => { this.ghost.vulnerable = false }, 13000);
+                        this.turnAllGhostsVulnerable();
+                        setTimeout(() => { this.turnGhostsBackNormal() }, 13000);
                     } 
                     this.main.turnGhost = false;
                 }, 300);
@@ -92,6 +93,22 @@ export default class Pacman {
             window.myAnimation = setInterval(() => { this.animate() }, 300);
             this.startedGhost = true;
         }
+    }
+
+    turnAllGhostsVulnerable() {
+        this.ghost.redVulnerable = true;
+        this.ghost.pinkVulnerable = true;
+        this.ghost.orangeVulnerable = true;
+        this.ghost.blueVulnerable = true;
+        this.vulnerable = true;
+    }
+
+    turnGhostsBackNormal() {
+        this.ghost.redVulnerable = false;
+        this.ghost.pinkVulnerable = false;
+        this.ghost.orangeVulnerable = false;
+        this.ghost.blueVulnerable = false;
+        this.vulnerable = false;
     }
 
     animate() {
@@ -114,7 +131,8 @@ export default class Pacman {
     }
 
     detectCollision() {
-        if ( this.sameSpot()
+        if (!this.vulnerable 
+            && this.sameSpot()
             && this.life !== 0) {
                 this.totalScore += this.main.score;
                 clearInterval(window.myAnimation);
@@ -146,7 +164,7 @@ export default class Pacman {
                 clearInterval(window.upMoves);
                 clearInterval(window.downMoves);
                 setTimeout(() => {this.restart()}, 3000);
-            } else if (this.life === 0) {
+        } else if (this.life === 0) {
             // lost all 3 lives
             // when game over remove pacman
             clearInterval(window.myAnimation);
@@ -155,7 +173,10 @@ export default class Pacman {
             this.ctx.font = "24px Comic Sans MS";
             this.ctx.fillStyle = "red";
             setTimeout(() => {this.ctx.fillText("Game Over", 240, 400)}, 3000);
-        }
+        } else if (this.vulnerable
+            && this.sameSpot()) {
+                // eating a ghost that's vulnerable
+            }
     }
 
     sameSpot() {
