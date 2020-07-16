@@ -11,6 +11,7 @@ export default class Pacman {
         this.life = 3;
         this.totalScore = 0;
         this.vulnerable = false;
+        this.eatGhostScore = 0;
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
@@ -109,6 +110,7 @@ export default class Pacman {
         this.ghost.orangeVulnerable = false;
         this.ghost.blueVulnerable = false;
         this.vulnerable = false;
+        this.eatGhostScore = 0;
     }
 
     animate() {
@@ -124,14 +126,14 @@ export default class Pacman {
     drawScore() {
         // Adds on the score from the previous try
         if (this.totalScore < this.main.score) {
-            this.score.innerHTML = this.main.score;
+            this.score.innerHTML = this.main.score + this.eatGhostScore;
         } else {
-            this.score.innerHTML = this.totalScore + this.main.score;
+            this.score.innerHTML = this.totalScore + this.main.score + this.eatGhostScore;
         }
     }
 
     detectCollision() {
-        if (!this.vulnerable 
+        if (!this.vulnerable
             && this.sameSpot()
             && this.life !== 0) {
                 this.totalScore += this.main.score;
@@ -173,10 +175,51 @@ export default class Pacman {
             this.ctx.font = "24px Comic Sans MS";
             this.ctx.fillStyle = "red";
             setTimeout(() => {this.ctx.fillText("Game Over", 240, 400)}, 3000);
-        } else if (this.vulnerable
-            && this.sameSpot()) {
+        } else if (this.ghost.redVulnerable
+            && (this.main.x === this.ghost.redX && this.main.y === this.ghost.redY)) {
                 // eating a ghost that's vulnerable
-            }
+                // add score +200
+                this.eatGhostScore += 200;
+                // put ghost back to starting point and not vulnerable
+                this.ghost.redX = 300;
+                this.ghost.redY = 270;
+                this.ghost.redVulnerable = false; 
+                this.ghost.redExit();
+                this.ghost.moveRed(this.ctx);
+        } else if (this.ghost.pinkVulnerable
+            && (this.main.x === this.ghost.pinkX && this.main.y === this.ghost.pinkY)) {
+            // eating a ghost that's vulnerable
+            // add score +200
+            this.eatGhostScore += 200;
+            // put ghost back to starting point and not vulnerable
+            this.ghost.pinkX = 270;
+            this.ghost.pinkY = 270;
+            this.ghost.pinkVulnerable = false;
+            this.ghost.pinkExit();
+            this.ghost.movePink(this.ctx);
+        } else if (this.ghost.orangeVulnerable
+            && (this.main.x === this.ghost.orangeX && this.main.y === this.ghost.orangeY)) {
+            // eating a ghost that's vulnerable
+            // add score +200
+            this.eatGhostScore += 200;
+            // put ghost back to starting point and not vulnerable
+            this.ghost.orangeX = 300;
+            this.ghost.orangeY = 300;
+            this.ghost.orangeVulnerable = false;
+            this.ghost.orangeExit();
+            this.ghost.moveOrange(this.ctx);
+        } else if (this.ghost.blueVulnerable
+            && (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY)) {
+            // eating a ghost that's vulnerable
+            // add score +200
+            this.eatGhostScore += 200;
+            // put ghost back to starting point and not vulnerable
+            this.ghost.blueX = 330;
+            this.ghost.blueY = 270;
+            this.ghost.blueVulnerable = false;
+            this.ghost.blueExit();
+            this.ghost.moveBlue(this.ctx);
+        }
     }
 
     sameSpot() {

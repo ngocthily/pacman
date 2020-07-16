@@ -22,6 +22,11 @@ export default class Ghost {
         this.blueMap = BlueMap;
 
         // first exit the ghosts inside the "cage"
+        // red starts outside the cage but if it gets eaten then it goes inside
+        // the cage and needs to exit out
+        if (this.redX === 300 && this.redY === 270) {
+            this.redExit();
+        }
         this.pinkExit();
         this.orangeExit();
         this.blueExit();
@@ -43,6 +48,20 @@ export default class Ghost {
 
     drawGhost(ctx) {
         // initially draw
+        // red
+        // eyes up 
+        // draw red with eyes up when inside the cage
+        if (this.redX === 300 && this.redY === 270) {
+            loadImage('images/ghosts.png')
+                .then(image => {
+                    ctx.drawImage(image,
+                        180, 0,
+                        180, 180,
+                        this.redX - 13, this.redY - 13,
+                        30, 30)
+                });
+        }
+
         // pink
         // eyes up
         loadImage('images/ghosts.png')
@@ -358,22 +377,27 @@ export default class Ghost {
         }
     }
 
+    redExit() {
+        setTimeout(() => { this.redY -= 30 }, 1000);
+        setTimeout(() => { this.redY -= 30 }, 2000);
+    }
+
     pinkExit() {
-        setTimeout(() => { this.pinkX += 30 }, 1000);
-        setTimeout(() => { this.pinkY -= 30 }, 2000);
-        setTimeout(() => { this.pinkY -= 30 }, 3000);
+        setTimeout(() => { this.pinkX += 30 }, 3000);
+        setTimeout(() => { this.pinkY -= 30 }, 4000);
+        setTimeout(() => { this.pinkY -= 30 }, 5000);
     }
     
     orangeExit() {
-        setTimeout(() => { this.orangeY -= 30 }, 2000);
-        setTimeout(() => { this.orangeY -= 30 }, 3000);
-        setTimeout(() => { this.orangeY -= 30 }, 4000);
+        setTimeout(() => { this.orangeY -= 30 }, 7000);
+        setTimeout(() => { this.orangeY -= 30 }, 8000);
+        setTimeout(() => { this.orangeY -= 30 }, 9000);
     }
     
     blueExit() {
-        setTimeout(() => {this.blueX -= 30}, 3000);
-        setTimeout(() => {this.blueY -= 30}, 4000);
-        setTimeout(() => {this.blueY -= 30}, 5000);
+        setTimeout(() => {this.blueX -= 30}, 10000);
+        setTimeout(() => {this.blueY -= 30}, 11000);
+        setTimeout(() => {this.blueY -= 30}, 12000);
     }
 
     removeGhosts() {
