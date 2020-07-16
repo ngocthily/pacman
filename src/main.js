@@ -14,8 +14,11 @@ export default class Main {
         // and closes mouth first before opening
         this.mouth = 0;
         this.opening = true;
+
+        // for pacman to die
         this.dead = false;
-        this.phrase = 1;
+        // turn ghosts to vulnerable ones
+        this.turnGhost = false;
 
         // sets right to true for its starting position
         this.right = true;
@@ -39,6 +42,7 @@ export default class Main {
         ctx.beginPath();
 
         if (this.dead) {
+            // the lines that go in all directions at the end of the dying animation
             this.resetDirection();
             ctx.moveTo(this.x + 5, this.y + 5);
             ctx.lineTo(this.x + 10, this.y + 10);
@@ -160,7 +164,10 @@ export default class Main {
             } else if (this.board[(this.y / 30) - 1][(this.x / 30) - 1] === 3) {
                 this.board[(this.y / 30) - 1][(this.x / 30) - 1] = 0;
                 this.score += 50;
-                console.log("ate a big one")
+                this.turnGhost = true;
+                setTimeout(() => {
+                    this.turnGhost = false;
+                }, 3000)
                 // big dots are worth 50 each
             }
         }

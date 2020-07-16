@@ -44,20 +44,41 @@ export default class Pacman {
             if (e.keyCode === 39) {
                 window.rightMoves = setInterval(() => {
                     this.main.move("right");
+                    if (this.main.turnGhost) {
+                        this.ghost.vulnerable = true;
+                        setTimeout(() => {this.ghost.vulnerable = false}, 13000);
+                    }
+                    this.main.turnGhost = false;
                 }, 300);
             } else if (e.keyCode === 37) {
                 window.leftMoves = setInterval(() => {
                     this.main.move("left");
+                    if (this.main.turnGhost) {
+                        this.ghost.vulnerable = true;
+                        setTimeout(() => { this.ghost.vulnerable = false }, 13000);
+                    }
+                    this.main.turnGhost = false;
                 }, 300);
             } else if (e.keyCode === 38) {
                 window.upMoves = setInterval(() => {
                     this.main.move("up");
+                    if (this.main.turnGhost) {
+                        this.ghost.vulnerable = true;
+                        setTimeout(() => { this.ghost.vulnerable = false }, 13000);
+                    }
+                    this.main.turnGhost = false;
                 }, 300);
             } else if (e.keyCode === 40) {
                 window.downMoves = setInterval(() => {
                     this.main.move("down");
+                    if (this.main.turnGhost) {
+                        this.ghost.vulnerable = true;
+                        setTimeout(() => { this.ghost.vulnerable = false }, 13000);
+                    } 
+                    this.main.turnGhost = false;
                 }, 300);
-            } else if (e.keyCode === 32) {
+            } 
+            else if (e.keyCode === 32) {
                 // after losing all three lives
                 this.startedGhost = false;
                 this.life = 3;

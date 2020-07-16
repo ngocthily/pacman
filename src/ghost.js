@@ -25,6 +25,9 @@ export default class Ghost {
         this.pinkExit();
         this.orangeExit();
         this.blueExit();
+
+        // turns to vulnerable ghost
+        this.vulnerable = false;
     }
 
     animate(ctx) {
@@ -76,47 +79,69 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (this.redMap[((this.redY)/30) - 1][((this.redX+30)/30) -1] === 1) {
-            this.redX += 30;
-            loadImage('images/ghosts.png')
+        if (!this.vulnerable) {
+            if (this.redMap[((this.redY) / 30) - 1][((this.redX + 30) / 30) - 1] === 1) {
+                this.redX += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            0, 0,
+                            180, 180,
+                            this.redX - 13, this.redY - 13,
+                            30, 30)
+                    });
+            } else if (this.redMap[((this.redY - 30) / 30) - 1][((this.redX) / 30) - 1] === 2) {
+                this.redY -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            180, 0,
+                            180, 180,
+                            this.redX - 13, this.redY - 13,
+                            30, 30)
+                    });
+            } else if (this.redMap[((this.redY) / 30) - 1][((this.redX - 30) / 30) - 1] === 3) {
+                this.redX -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            180, 180,
+                            180, 180,
+                            this.redX - 13, this.redY - 13,
+                            30, 30)
+                    });
+            } else if (this.redMap[((this.redY + 30) / 30) - 1][((this.redX) / 30) - 1] === 4) {
+                this.redY += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            0, 180,
+                            180, 180,
+                            this.redX - 13, this.redY - 13,
+                            30, 30)
+                    });
+            }
+        }
+
+        // opposite direction and vulnerable
+        if (this.vulnerable) {
+            loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,
                         0, 0,
                         180, 180,
                         this.redX - 13, this.redY - 13,
-                        30, 30)
+                        36, 36)
                 });
-        } else if (this.redMap[((this.redY-30) / 30) - 1][((this.redX) / 30) - 1] === 2) {
-            this.redY -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        180, 0,
-                        180, 180,
-                        this.redX - 13, this.redY - 13,
-                        30, 30)
-                });
-            
-        } else if (this.redMap[((this.redY) / 30) - 1][((this.redX - 30) / 30) - 1] === 3) {
-            this.redX -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        180, 180,
-                        180, 180,
-                        this.redX - 13, this.redY - 13,
-                        30, 30)
-                });
-        } else if (this.redMap[((this.redY+30) / 30) - 1][((this.redX) / 30) - 1] === 4) {
-            this.redY += 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        0, 180,
-                        180, 180,
-                        this.redX - 13, this.redY - 13,
-                        30, 30)
-                });
+            if (this.redMap[((this.redY) / 30) - 1][((this.redX) / 30) - 1] === 3) {
+                this.redX += 30;
+            } else if (this.redMap[((this.redY) / 30) -1][((this.redX) / 30) - 1] === 4) {
+                this.redY -= 30;
+            } else if (this.redMap[((this.redY) / 30) - 1][((this.redX) / 30) - 1] === 1) {
+                this.redX -= 30;
+            } else if (this.redMap[((this.redY - 30) / 30)][((this.redX) / 30) - 1] === 2) {
+                this.redY += 30; 
+            }
         }
     }
 
@@ -125,46 +150,68 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX + 30) / 30) - 1] === 1) {
-            this.pinkX += 30;
-            loadImage('images/ghosts.png')
+        if (!this.vulnerable) {
+            if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX + 30) / 30) - 1] === 1) {
+                this.pinkX += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            0, 380,
+                            180, 180,
+                            this.pinkX - 13, this.pinkY - 13,
+                            30, 30)
+                    });
+            } else if (this.pinkMap[((this.pinkY - 30) / 30) - 1][((this.pinkX) / 30) - 1] === 2) {
+                this.pinkY -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            180, 380,
+                            180, 180,
+                            this.pinkX - 13, this.pinkY - 13,
+                            30, 30)
+                    });
+            } else if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX - 30) / 30) - 1] === 3) {
+                this.pinkX -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            180, 560,
+                            180, 180,
+                            this.pinkX - 13, this.pinkY - 13,
+                            30, 30)
+                    });
+            } else if (this.pinkMap[((this.pinkY + 30) / 30) - 1][((this.pinkX) / 30) - 1] === 4) {
+                this.pinkY += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            -10, 560,
+                            180, 180,
+                            this.pinkX - 13, this.pinkY - 13,
+                            30, 30)
+                    });
+            }
+        }
+
+        if (this.vulnerable) {
+            loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        0, 380,
+                        0, 0,
                         180, 180,
                         this.pinkX - 13, this.pinkY - 13,
-                        30, 30)
+                        36, 36)
                 });
-        } else if (this.pinkMap[((this.pinkY - 30) / 30) - 1][((this.pinkX) / 30) - 1] === 2) {
-            this.pinkY -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        180, 380,
-                        180, 180,
-                        this.pinkX - 13, this.pinkY - 13,
-                        30, 30)
-                });
-        } else if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX - 30) / 30) - 1] === 3) {
-            this.pinkX -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        180, 560,
-                        180, 180,
-                        this.pinkX - 13, this.pinkY - 13,
-                        30, 30)
-                });
-        } else if (this.pinkMap[((this.pinkY + 30) / 30) - 1][((this.pinkX) / 30) - 1] === 4) {
-            this.pinkY += 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        -10, 560,
-                        180, 180,
-                        this.pinkX - 13, this.pinkY - 13,
-                        30, 30)
-                });
+            if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX) / 30) - 1] === 3) {
+                this.pinkX += 30;
+            } else if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX) / 30) - 1] === 4) {
+                this.pinkY -= 30;
+            } else if (this.pinkMap[((this.pinkY) / 30) - 1][((this.pinkX) / 30) - 1] === 1) {
+                this.pinkX -= 30;
+            } else if (this.pinkMap[((this.pinkY - 30) / 30)][((this.pinkX) / 30) - 1] === 2) {
+                this.pinkY += 30;
+            }
         }
     }
 
@@ -173,46 +220,68 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX + 30) / 30) - 1] === 1) {
-            this.orangeX += 30;
-            loadImage('images/ghosts.png')
+        if (!this.vulnerable) {
+            if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX + 30) / 30) - 1] === 1) {
+                this.orangeX += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            370, 380,
+                            180, 180,
+                            this.orangeX - 13, this.orangeY - 13,
+                            30, 30)
+                    });
+            } else if (this.orangeMap[((this.orangeY - 30) / 30) - 1][((this.orangeX) / 30) - 1] === 2) {
+                this.orangeY -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            580, 380,
+                            180, 180,
+                            this.orangeX - 13, this.orangeY - 13,
+                            30, 30)
+                    });
+            } else if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX - 30) / 30) - 1] === 3) {
+                this.orangeX -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            580, 570,
+                            180, 180,
+                            this.orangeX - 13, this.orangeY - 13,
+                            30, 30)
+                    });
+            } else if (this.orangeMap[((this.orangeY + 30) / 30) - 1][((this.orangeX) / 30) - 1] === 4) {
+                this.orangeY += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            380, 560,
+                            180, 180,
+                            this.orangeX - 13, this.orangeY - 13,
+                            30, 30)
+                    });
+            }
+        }
+
+        if (this.vulnerable) {
+            loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        370, 380,
+                        0, 0,
                         180, 180,
                         this.orangeX - 13, this.orangeY - 13,
-                        30, 30)
+                        38, 38)
                 });
-        } else if (this.orangeMap[((this.orangeY - 30) / 30) - 1][((this.orangeX) / 30) - 1] === 2) {
-            this.orangeY -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        580, 380,
-                        180, 180,
-                        this.orangeX - 13, this.orangeY - 13,
-                        30, 30)
-                });
-        } else if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX - 30) / 30) - 1] === 3) {
-            this.orangeX -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        580, 570,
-                        180, 180,
-                        this.orangeX - 13, this.orangeY - 13,
-                        30, 30)
-                });
-        } else if (this.orangeMap[((this.orangeY + 30) / 30) - 1][((this.orangeX) / 30) - 1] === 4) {
-            this.orangeY += 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        380, 560,
-                        180, 180,
-                        this.orangeX - 13, this.orangeY - 13,
-                        30, 30)
-                });
+            if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX) / 30) - 1] === 3) {
+                this.orangeX += 30;
+            } else if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX) / 30) - 1] === 4) {
+                this.orangeY -= 30;
+            } else if (this.orangeMap[((this.orangeY) / 30) - 1][((this.orangeX) / 30) - 1] === 1) {
+                this.orangeX -= 30;
+            } else if (this.orangeMap[((this.orangeY - 30) / 30)][((this.orangeX) / 30) - 1] === 2) {
+                this.orangeY += 30;
+            }
         }
     }
 
@@ -221,46 +290,68 @@ export default class Ghost {
         // 2: up
         // 3: left
         // 4: down
-        if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX + 30) / 30) - 1] === 1) {
-            this.blueX += 30;
-            loadImage('images/ghosts.png')
+        if (!this.vulnerable) {
+            if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX + 30) / 30) - 1] === 1) {
+                this.blueX += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            380, -10,
+                            180, 180,
+                            this.blueX - 13, this.blueY - 13,
+                            30, 30)
+                    });
+            } else if (this.blueMap[((this.blueY - 30) / 30) - 1][((this.blueX) / 30) - 1] === 2) {
+                this.blueY -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            580, 0,
+                            180, 180,
+                            this.blueX - 13, this.blueY - 13,
+                            30, 30)
+                    });
+            } else if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX - 30) / 30) - 1] === 3) {
+                this.blueX -= 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            580, 180,
+                            180, 180,
+                            this.blueX - 13, this.blueY - 13,
+                            30, 30)
+                    });
+            } else if (this.blueMap[((this.blueY + 30) / 30) - 1][((this.blueX) / 30) - 1] === 4) {
+                this.blueY += 30;
+                loadImage('images/ghosts.png')
+                    .then(image => {
+                        ctx.drawImage(image,
+                            400, 180,
+                            180, 180,
+                            this.blueX - 13, this.blueY - 13,
+                            30, 30)
+                    });
+            }
+        }
+
+        if (this.vulnerable) {
+            loadImage('images/vulnerable_ghost.png')
                 .then(image => {
                     ctx.drawImage(image,
-                        380, -10,
+                        0, 0,
                         180, 180,
                         this.blueX - 13, this.blueY - 13,
-                        30, 30)
+                        36, 36)
                 });
-        } else if (this.blueMap[((this.blueY - 30) / 30) - 1][((this.blueX) / 30) - 1] === 2) {
-            this.blueY -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        580, 0,
-                        180, 180,
-                        this.blueX - 13, this.blueY - 13,
-                        30, 30)
-                });
-        } else if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX - 30) / 30) - 1] === 3) {
-            this.blueX -= 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        580, 180,
-                        180, 180,
-                        this.blueX - 13, this.blueY - 13,
-                        30, 30)
-                });
-        } else if (this.blueMap[((this.blueY + 30) / 30) - 1][((this.blueX) / 30) - 1] === 4) {
-            this.blueY += 30;
-            loadImage('images/ghosts.png')
-                .then(image => {
-                    ctx.drawImage(image,
-                        400, 180,
-                        180, 180,
-                        this.blueX - 13, this.blueY - 13,
-                        30, 30)
-                });
+            if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX) / 30) - 1] === 3) {
+                this.blueX += 30;
+            } else if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX) / 30) - 1] === 4) {
+                this.blueY -= 30;
+            } else if (this.blueMap[((this.blueY) / 30) - 1][((this.blueX) / 30) - 1] === 1) {
+                this.blueX -= 30;
+            } else if (this.blueMap[((this.blueY - 30) / 30)][((this.blueX) / 30) - 1] === 2) {
+                this.blueY += 30;
+            }
         }
     }
 
