@@ -143,7 +143,7 @@ export default class Pacman {
                 // we move them off the canvas
                 this.ghost.removeGhosts();
                 // pacman dying animation
-                // disable moving while pacman is dying!!
+                // disables moving while pacman is dying
                 window.dying = setInterval(() => {
                     this.listen = false;
                     this.main.mouth -= 1;
@@ -219,6 +219,41 @@ export default class Pacman {
             this.ghost.blueVulnerable = false;
             this.ghost.blueExit();
             this.ghost.moveBlue(this.ctx);
+        } else if (this.sameSpot()
+            && this.life !== 0) {
+                // This is placed at the end for a reason
+                // its for when any of the vulnerable ghost gets eaten => turns backs to a regular
+                // allows pacman to die when hitting that ghost
+            this.totalScore += this.main.score;
+            clearInterval(window.myAnimation);
+            // keep this because if you remove it the ghosts will still be detected
+            // this.sameSpot() will keep returning true
+            // we move them off the canvas
+            this.ghost.removeGhosts();
+            // pacman dying animation
+            // disables moving while pacman is dying
+            window.dying = setInterval(() => {
+                this.listen = false;
+                this.main.mouth -= 1;
+                // need to overlay background each time or else pacman will overlay its old one
+                this.level.animate(this.ctx);
+                this.main.animate(this.ctx)
+                if (this.main.mouth === -12) {
+                    clearInterval(window.dying);
+                    this.level.animate(this.ctx);
+                    this.main.dead = true;
+                    this.main.animate(this.ctx)
+                }
+            }, 100)
+            this.startedGhost = false;
+            this.life -= 1;
+            // clear interval here again cause when pacman dies and restarts he will
+            // move a certain amount in the last direction if went if possible
+            clearInterval(window.rightMoves);
+            clearInterval(window.leftMoves);
+            clearInterval(window.upMoves);
+            clearInterval(window.downMoves);
+            setTimeout(() => { this.restart() }, 3000);
         }
     }
 
