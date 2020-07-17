@@ -154,6 +154,7 @@
     background-color: black;
     z-index: 2;
     margin-top: -25px;
+    min-height: 38px;
 }
 
 #lives {

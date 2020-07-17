@@ -78,8 +78,6 @@ export default class Pacman {
         // clears "READY!" after player hits a button
         this.level.ready = false;
 
-        // this.remix.play();
-
         // checks detection of collision with another ghost every time it moves
         setInterval(() => { this.detectCollision() }, 300);
         if (this.listen) {
@@ -210,7 +208,7 @@ export default class Pacman {
             this.ctx.font = "60px Game Over";
             this.ctx.fillStyle = "red";
             // setTimeout because we have to let pacman die fully
-            setTimeout(() => {this.ctx.fillText("GAME OVER", 235, 400)}, 3000);
+            setTimeout(() => {this.ctx.fillText("GAME OVER", 230, 400)}, 3000);
         } else if (this.ghost.redVulnerable
             && (this.main.x === this.ghost.redX && this.main.y === this.ghost.redY)) {
                 // eating a ghost that's vulnerable
