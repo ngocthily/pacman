@@ -30,6 +30,7 @@
     color: white;
     font-size: 60px;
     font-family: 'Game Over';
+    margin-left: 100px;
 }
 
 .instructions-move {
@@ -93,6 +94,7 @@
     align-items: center;
     margin-top: 98px;
     background-color: black;
+    margin-right: 100px;
 }
 
 .score-music-container {
