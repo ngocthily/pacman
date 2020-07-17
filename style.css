@@ -1,0 +1,71 @@
+/* body {
+    background-color: black;
+} */
+.pacman-container {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+}
+
+.instructions-move {
+    display: flex;
+    flex-direction: column;
+}
+
+.instructions-move-img {
+    display: flex;
+    flex-direction: row;
+}
+
+.pacman {
+    width: 30px;
+}
+
+.arrows,
+.wasd {
+    width: 120px;
+}
+
+.red-ghost, 
+.orange-ghost,
+.blue-ghost,
+.pink-ghost {
+    width: 25px;
+}
+
+.vulnerable-ghost {
+    width: 25px;
+}
+
+.pacman-title {
+    text-align: center;
+}
+
+.pacman-title-img {
+    width: 450px;
+}
+
+.pacman-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.pacman-title-game-container {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    order: 3;
+}

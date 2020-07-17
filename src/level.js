@@ -422,7 +422,7 @@ export default class Level {
                 if (this.board[i][j] === 2) {
                     ctx.beginPath();
                     ctx.arc((j + 1) * 30, (i + 1) * 30, 2, 0, 2 * Math.PI);
-                    ctx.fillStyle = "white";
+                    ctx.fillStyle = "lavender";
                     ctx.fill();
                 }
             }

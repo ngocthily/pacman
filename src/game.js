@@ -43,7 +43,7 @@ export default class Pacman {
         // checks detection of collision with another ghost every time it moves
         setInterval(() => { this.detectCollision() }, 300);
         if (this.listen) {
-            if (e.keyCode === 39) {
+            if (e.keyCode === 39 || e.keyCode === 68) {
                 window.rightMoves = setInterval(() => {
                     this.main.move("right");
                     if (this.main.turnGhost) {
@@ -52,7 +52,7 @@ export default class Pacman {
                     }
                     this.main.turnGhost = false;
                 }, 300);
-            } else if (e.keyCode === 37) {
+            } else if (e.keyCode === 37 || e.keyCode === 65) {
                 window.leftMoves = setInterval(() => {
                     this.main.move("left");
                     if (this.main.turnGhost) {
@@ -61,7 +61,7 @@ export default class Pacman {
                     }
                     this.main.turnGhost = false;
                 }, 300);
-            } else if (e.keyCode === 38) {
+            } else if (e.keyCode === 38 || e.keyCode === 87) {
                 window.upMoves = setInterval(() => {
                     this.main.move("up");
                     if (this.main.turnGhost) {
@@ -70,7 +70,7 @@ export default class Pacman {
                     }
                     this.main.turnGhost = false;
                 }, 300);
-            } else if (e.keyCode === 40) {
+            } else if (e.keyCode === 40 || e.keyCode === 83) {
                 window.downMoves = setInterval(() => {
                     this.main.move("down");
                     if (this.main.turnGhost) {
@@ -80,12 +80,6 @@ export default class Pacman {
                     this.main.turnGhost = false;
                 }, 300);
             } 
-            else if (e.keyCode === 32) {
-                // after losing all three lives
-                this.startedGhost = false;
-                this.life = 3;
-                this.restart();
-            }
         }
  
         // put on end because then there will be lag
@@ -133,6 +127,7 @@ export default class Pacman {
     }
 
     detectCollision() {
+        // this definitely can be cleaned up
         if (!this.vulnerable
             && this.sameSpot()
             && this.life !== 0) {
@@ -274,6 +269,10 @@ export default class Pacman {
 
     drawLives() {
         // edit to have pacman images
-        this.lives.innerHTML = this.life;
+        let content = '';
+        for (var i=0; i <this.life; i++) {
+            content += "<img src='images/pacman.png' width='25px'>";
+        }
+        this.lives.innerHTML = content;
     }
 }

@@ -2,38 +2,57 @@
 <head>
     <title>Pacman</title>
     <script type="text/javascript" src="dist/main.js" charset="utf-8" defer></script>
-    <style>
-        h1 {
-            text-align: center;
-        }
-
-        .pacman-wrapper {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-        }
-
-        #pacman-game {
-            margin: auto;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="./style.css" title="Default Styles" media="screen">
 </head>
 
 <body>
-    <h1>Pacman</h1>
-    <div class="pacman-wrapper">
-    <canvas id="pacman-game" height="600" width="600"></canvas>
-    <div class="score-lives-wrapper">
-        <div class="score-wrapper">
-            Score:
-            <div id="score"></div>
+    <div class="pacman-container">
+        <div class="column instructions">
+            <div class="instructions-header">
+                Instructions:
+            </div>
+            <div class="instructions-start">
+                Hit any key to start game
+            </div>
+            <div class="instructions-move">
+                To move pacman:
+                <div class="instructions-move-img">
+                    <img class="arrows" src="images/arrow.png"/>
+                    <img class="wasd" src="images/wasd.png"/>
+                </div>
+            </div>
+            <div class="instructions-pacman">
+                <img class="pacman" src="images/pacman.png"/>
+            </div>
+            <div class="ghosts">
+                <img class="red-ghost" src="images/red_ghost.png"/>
+                <img class="orange-ghost" src="images/orange_ghost.png"/>
+                <img class="blue-ghost" src="images/blue_ghost.png"/>
+                <img class="pink-ghost" src="images/pink_ghost.png"/>
+            </div>
+            <div class="vulnerable-ghost-container">
+                <img class="vulnerable-ghost" src="images/vulnerable_ghost.png"/>
+            </div>
         </div>
-        <div class="lives-wrapper">
-            Lives:
-            <div id="lives"></div>
+        <div class="column pacman-title-game-container">
+            <div class="pacman-title"><img class="pacman-title-img" src="images/pacman_transparent.png"/></div>
+            <canvas id="pacman-game" height="600" width="600"></canvas>
         </div>
-    </div>
+        <div class="column right">
+            <div class="music-mute">
+
+            </div>
+            <div class="score-lives-container">
+                <div class="score-container">
+                    Score:
+                    <div id="score"></div>
+                </div>
+                <div class="lives-container">
+                    Lives:
+                    <div id="lives"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
