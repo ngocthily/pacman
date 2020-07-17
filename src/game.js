@@ -18,6 +18,35 @@ export default class Pacman {
         this.score = document.getElementById("score");
         this.lives = document.getElementById("lives");
         this.restart();
+        
+        // let content = '';
+        // for (var i = 0; i < this.life; i++) {
+        //     content += "<img src='images/pacman.png'>";
+        // }
+        // this.lives.innerHTML = content;
+
+        this.on = false;
+        this.remix = new Audio("./audio/pacman_remix.mp3")
+        this.soundContainer = document.getElementById("mute-btn-container");
+        this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
+        this.soundContainer.addEventListener("click", (e) => {
+            this.sound(e)
+        });
+    }
+
+    sound () {
+        if (this.on) {
+            this.soundContainer.innerHTML = "<img id='volume-on' src='images/volume_up.png'>";
+            this.remix.play();
+            this.on = false;
+            // this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
+            // this.remix.pause();
+            // this.on = false;
+        } else {
+            this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
+            this.remix.pause();
+            this.on = true;
+        }
     }
 
     restart() {
@@ -48,6 +77,8 @@ export default class Pacman {
 
         // clears "READY!" after player hits a button
         this.level.ready = false;
+
+        // this.remix.play();
 
         // checks detection of collision with another ghost every time it moves
         setInterval(() => { this.detectCollision() }, 300);

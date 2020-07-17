@@ -29,6 +29,9 @@ export default class Main {
         // to keep score
         this.score = 0;
         this.board = Board;
+
+        // need to work on sound effects to the right BPM
+        // this.chomping = new Audio("./audio/pacman_chomp.wav");
     }
 
     animate(ctx) {
@@ -155,15 +158,18 @@ export default class Main {
     collectCoin() {
         let wholeNumX = (((this.x / 30) - 1) - Math.floor((this.x / 30) - 1)) === 0;
         let wholeNumY = (((this.y / 30) - 1) - Math.floor((this.y / 30) - 1)) === 0;
+        // this.chomping.pause();
 
         if (wholeNumX && wholeNumY) {
             if (this.board[(this.y/30)-1][(this.x/30)-1] === 2) {
                 this.board[(this.y / 30) - 1][(this.x / 30) - 1] = 0;
                 this.score += 10;
+                // this.chomping.play();
                 // small dots are worth 10 each
             } else if (this.board[(this.y / 30) - 1][(this.x / 30) - 1] === 3) {
                 this.board[(this.y / 30) - 1][(this.x / 30) - 1] = 0;
                 this.score += 50;
+                // this.chomping.play();
                 this.turnGhost = true;
                 setTimeout(() => {
                     this.turnGhost = false;

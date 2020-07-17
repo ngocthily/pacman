@@ -33,7 +33,7 @@
     font-family: 'Game Over';
     align-items: center;
     text-align: center;
-    max-height: 627px;
+    max-height: 626px;
     position: relative;
     top: 98px;
     left: 50px;
@@ -42,17 +42,21 @@
 
 .instructions-start {
     padding-top: 50px;
+    padding-right: 10px;
 }
+
 .instructions-move {
     display: flex;
     flex-direction: column;
     padding-top: 10px;
+    padding-right: 10px;
 }
 
 .instructions-move-img {
     display: flex;
     flex-direction: row;
     padding-top: 10px;
+    padding-right: 10px;
 }
 
 .pacman {
@@ -109,7 +113,7 @@
     color: white;
     font-family: 'Game Over';
     font-size: 50px;
-    max-height: 627px;
+    max-height: 626px;
     position: relative;
     top: 98px;
     right: 50px;
@@ -133,7 +137,13 @@
     font-family: 'Game Over';
 }
 
-.mute {
+#volume-off {
+    width: 20px;
+    padding-right: 50px;
+    cursor: pointer;
+}
+
+#volume-on {
     width: 25px;
     padding-right: 50px;
     cursor: pointer;
@@ -193,10 +203,12 @@
 
 .made {
     margin-top: auto;
+    padding: 10px;
 }
 
 .github-linkedin-container {
     margin-top: auto;
+    margin-right: 15px;
 }
 
 .github-link,
@@ -206,7 +218,7 @@
 
 .github,
 .linkedin {
-    width: 50px;
+    width: 40px;
     padding: 10px;
 }
 
