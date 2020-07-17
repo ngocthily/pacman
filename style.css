@@ -1,6 +1,18 @@
 /* body {
     background-color: black;
 } */
+
+@font-face {
+    font-family: "Game Over";
+    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.eot");
+    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.eot?#iefix") format("embedded-opentype");
+    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.woff") format("woff");
+    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.ttf") format("truetype");
+    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.svg#game_overbold") format("svg");
+    font-weight: bold;
+    font-style: normal;
+}
+
 .pacman-container {
     display: flex;
 }
@@ -64,8 +76,45 @@
     order: 2;
 }
 
+#pacman-game {
+    position: relative;
+    z-index: 1;
+}
 .right {
     display: flex;
     flex-direction: column;
     order: 3;
+}
+
+.score-container {
+    background-color: black;
+}
+
+#score {
+    padding-top: 10px;
+    padding-left: 10px;
+    color: white;
+    font-size: 50px;
+    padding-left: 50px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -30px;
+    font-family: 'Game Over';
+}
+
+.lives-container {
+    display: flex;
+    background-color: black;
+}
+
+#lives {
+    padding-left: 50px;
+    position: relative;
+    z-index: 2;
+    margin-top: -25px;
+}
+
+#lives img {
+    width: 25px;
+    padding: 3px;
 }

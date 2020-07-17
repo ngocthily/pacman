@@ -12,6 +12,7 @@ export default class Pacman {
         this.totalScore = 0;
         this.vulnerable = false;
         this.eatGhostScore = 0;
+        this.lost = false;
 
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
@@ -21,11 +22,16 @@ export default class Pacman {
 
     restart() {
         this.listen = true;
-
+        
         this.level = new Level(this.dimensions);
         this.main = new Main(this.dimensions);
         this.ghost = new Ghost(this.dimensions);
         
+        if (this.lost) {
+            this.level.ready = false;
+        } else {
+            this.level.ready = true;
+        }
         this.animate();
     }
 
@@ -39,6 +45,9 @@ export default class Pacman {
         clearInterval(window.leftMoves);
         clearInterval(window.upMoves);
         clearInterval(window.downMoves);
+
+        // clears "READY!" after player hits a button
+        this.level.ready = false;
 
         // checks detection of collision with another ghost every time it moves
         setInterval(() => { this.detectCollision() }, 300);
@@ -165,11 +174,12 @@ export default class Pacman {
             // lost all 3 lives
             // when game over remove pacman
             clearInterval(window.myAnimation);
+            this.lost = true;
             this.ghost.removeGhosts(this.ctx);
-            // this.main.die();
-            this.ctx.font = "24px Comic Sans MS";
+            this.ctx.font = "60px Game Over";
             this.ctx.fillStyle = "red";
-            setTimeout(() => {this.ctx.fillText("Game Over", 240, 400)}, 3000);
+            // setTimeout because we have to let pacman die fully
+            setTimeout(() => {this.ctx.fillText("GAME OVER", 235, 400)}, 3000);
         } else if (this.ghost.redVulnerable
             && (this.main.x === this.ghost.redX && this.main.y === this.ghost.redY)) {
                 // eating a ghost that's vulnerable
@@ -271,7 +281,7 @@ export default class Pacman {
         // edit to have pacman images
         let content = '';
         for (var i=0; i <this.life; i++) {
-            content += "<img src='images/pacman.png' width='25px'>";
+            content += "<img src='images/pacman.png'>";
         }
         this.lives.innerHTML = content;
     }

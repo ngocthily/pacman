@@ -4,6 +4,8 @@ export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.board = Board;
+
+        this.ready = true;
     }
 
     animate(ctx) {
@@ -15,6 +17,12 @@ export default class Level {
         ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+
+        if (this.ready) {
+            ctx.font = "60px Game Over";
+            ctx.fillStyle = "yellow";
+            ctx.fillText("READY!", 257, 400);
+        } 
 
         // Tiles
         // Temporary just to see
@@ -437,4 +445,5 @@ export default class Level {
         }
         return true;
     }
+
 }
