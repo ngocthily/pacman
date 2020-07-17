@@ -6,37 +6,25 @@
 </head>
 <body>
     <div class="pacman-container">
-        <div class="column instructions">
-            <div class="instructions-header">
-                Instructions:
-            </div>
+        <div class="column left">
             <div class="instructions-start">
                 Hit any key to start game
             </div>
             <div class="instructions-move">
                 To move pacman:
                 <div class="instructions-move-img">
-                    <img class="arrows" src="images/arrow.png"/>
-                    <img class="wasd" src="images/wasd.png"/>
+                    <img class="arrows" src="images/arrow.png" />
+                    <img class="wasd" src="images/wasd.png" />
                 </div>
-            </div>
-            <div class="instructions-pacman">
-                <img class="pacman" src="images/pacman_pixel.png"/>
-            </div>
-            <div class="ghosts">
-                <img class="red-ghost" src="images/red_ghost.png"/>
-                <img class="orange-ghost" src="images/orange_ghost.png"/>
-                <img class="blue-ghost" src="images/blue_ghost.png"/>
-                <img class="pink-ghost" src="images/pink_ghost.png"/>
-            </div>
-            <div class="vulnerable-ghost-container">
-                <img class="vulnerable-ghost" src="images/vulnerable_ghost.png"/>
             </div>
         </div>
         <div class="column pacman-title-game-container">
-            <div class="pacman-title"><img class="pacman-title-img" src="images/pacman_transparent.png"/></div>
-            <div class="score-container">
+            <div class="pacman-title"><img class="pacman-title-img" src="images/pacman_logo.png"/></div>
+            <div class="score-music-container">
                 <div id="score"></div>
+                <div class="mute-btn-container">
+                    <img class="mute" src="images/volume_mute.png" />
+                </div>
             </div>
             <canvas id="pacman-game" height="600" width="600"></canvas>
             <div class="lives-container">
@@ -44,8 +32,17 @@
             </div>
         </div>
         <div class="column right">
-            <div class="music-mute">
-
+            <div class="instructions-pacman">
+                <img class="pacman" src="images/pacman_pixel.png" />
+            </div>
+            <div class="ghosts">
+                <img class="red-ghost" src="images/red_ghost.png" />
+                <img class="orange-ghost" src="images/orange_ghost.png" />
+                <img class="blue-ghost" src="images/blue_ghost.png" />
+                <img class="pink-ghost" src="images/pink_ghost.png" />
+            </div>
+            <div class="vulnerable-ghost-container">
+                <img class="vulnerable-ghost" src="images/vulnerable_ghost.png" />
             </div>
         </div>
     </div>

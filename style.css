@@ -21,10 +21,15 @@
     flex: 1;
 }
 
-.instructions {
+.left {
     display: flex;
     flex-direction: column;
     order: 1;
+    margin-top: 98px;
+    background-color: black;
+    color: white;
+    font-size: 60px;
+    font-family: 'Game Over';
 }
 
 .instructions-move {
@@ -62,7 +67,7 @@
 }
 
 .pacman-title-img {
-    width: 450px;
+    width: 480px;
 }
 
 .pacman-container {
@@ -80,38 +85,50 @@
     position: relative;
     z-index: 1;
 }
+
 .right {
     display: flex;
     flex-direction: column;
     order: 3;
-}
-
-.score-container {
+    align-items: center;
+    margin-top: 98px;
     background-color: black;
 }
 
+.score-music-container {
+    background-color: black;
+    position: relative;
+    z-index: 2;
+    padding-top: 15px;
+    margin-bottom: -30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #score {
-    padding-top: 10px;
-    padding-left: 10px;
     color: white;
     font-size: 50px;
     padding-left: 50px;
-    position: relative;
-    z-index: 2;
-    margin-bottom: -30px;
     font-family: 'Game Over';
+}
+
+.mute {
+    width: 25px;
+    padding-right: 50px;
+    cursor: pointer;
 }
 
 .lives-container {
     display: flex;
     background-color: black;
+    z-index: 2;
+    margin-top: -25px;
 }
 
 #lives {
     padding-left: 50px;
     position: relative;
-    z-index: 2;
-    margin-top: -25px;
 }
 
 #lives img {

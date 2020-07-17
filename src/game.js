@@ -272,8 +272,8 @@ export default class Pacman {
     checkWin() {
         if (this.level.checkCoins()) {
             clearInterval(window.myAnimation);
-            this.ctx.font = "30px Arial";
-            this.ctx.fillText("You won!", 250, 270);
+            this.ctx.font = "60px Game Over";
+            this.ctx.fillText("You won!", 235, 400);
         }
     }
 
