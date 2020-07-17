@@ -1,6 +1,6 @@
 # PAC-MAN
 <p align="center">
-<img src = "https://user-images.githubusercontent.com/53027578/87836541-40949780-c845-11ea-89fa-3babbea44a81.png" width= "1200">
+<img src = "https://user-images.githubusercontent.com/53027578/87837983-4f317d80-c84a-11ea-8551-4969c6611057.png" width= "1200">
 </p>
 
 - [x] Design background (the walls)
