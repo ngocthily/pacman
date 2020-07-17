@@ -14,7 +14,9 @@
 }
 
 .pacman-container {
+    display: -webkit-flex;
     display: flex;
+    justify-content: center;
 }
 
 .column {
@@ -25,22 +27,32 @@
     display: flex;
     flex-direction: column;
     order: 1;
-    margin-top: 98px;
     background-color: black;
     color: white;
     font-size: 60px;
     font-family: 'Game Over';
-    margin-left: 100px;
+    align-items: center;
+    text-align: center;
+    max-height: 627px;
+    position: relative;
+    top: 98px;
+    left: 50px;
+    min-width: 400px;
 }
 
+.instructions-start {
+    padding-top: 50px;
+}
 .instructions-move {
     display: flex;
     flex-direction: column;
+    padding-top: 10px;
 }
 
 .instructions-move-img {
     display: flex;
     flex-direction: row;
+    padding-top: 10px;
 }
 
 .pacman {
@@ -49,7 +61,8 @@
 
 .arrows,
 .wasd {
-    width: 120px;
+    width: 150px;
+    margin-bottom: -50px;
 }
 
 .red-ghost, 
@@ -92,9 +105,14 @@
     flex-direction: column;
     order: 3;
     align-items: center;
-    margin-top: 98px;
     background-color: black;
-    margin-right: 100px;
+    color: white;
+    font-family: 'Game Over';
+    font-size: 50px;
+    max-height: 627px;
+    position: relative;
+    top: 98px;
+    right: 50px;
 }
 
 .score-music-container {
@@ -136,4 +154,70 @@
 #lives img {
     width: 25px;
     padding: 3px;
+}
+
+.small-dot-container {
+    padding: 5px;
+}
+
+.big-dot-container {
+    padding: 5px;
+}
+
+.vulnerable-ghost-container {
+    padding: 5px;
+}
+
+.small-dot {
+    width: 8px;
+}
+
+.big-dot {
+    width: 15px;
+}
+
+.bad,
+.good {
+    font-size: 70px;
+    text-align: center;
+}
+
+.bad-container {
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.good-container {
+    text-align: center;
+}
+
+.made {
+    margin-top: auto;
+}
+
+.github-linkedin-container {
+    margin-top: auto;
+}
+
+.github-link,
+.linkedin-link {
+    text-decoration: none
+}
+
+.github,
+.linkedin {
+    width: 50px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .left, 
+    .right {
+        display: none;
+    }
+
+    .pacman-title-game-container {
+        max-height: 600px;
+        max-width: 600px;
+    }
 }

@@ -57,7 +57,7 @@ export default class Pacman {
                     this.main.move("right");
                     if (this.main.turnGhost) {
                         this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal()}, 13000);
+                        setTimeout(() => { this.turnGhostsBackNormal()}, 15000);
                     }
                     this.main.turnGhost = false;
                 }, 300);
@@ -66,7 +66,7 @@ export default class Pacman {
                     this.main.move("left");
                     if (this.main.turnGhost) {
                         this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal()}, 13000);
+                        setTimeout(() => { this.turnGhostsBackNormal()}, 15000);
                     }
                     this.main.turnGhost = false;
                 }, 300);
@@ -75,7 +75,7 @@ export default class Pacman {
                     this.main.move("up");
                     if (this.main.turnGhost) {
                         this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal() }, 13000);
+                        setTimeout(() => { this.turnGhostsBackNormal() }, 15000);
                     }
                     this.main.turnGhost = false;
                 }, 300);
@@ -84,7 +84,7 @@ export default class Pacman {
                     this.main.move("down");
                     if (this.main.turnGhost) {
                         this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal() }, 13000);
+                        setTimeout(() => { this.turnGhostsBackNormal() }, 15000);
                     } 
                     this.main.turnGhost = false;
                 }, 300);
