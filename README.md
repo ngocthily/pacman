@@ -1,6 +1,6 @@
 # PAC-MAN
 <p align="center">
-<img src = "https://user-images.githubusercontent.com/53027578/87342147-9d1f4c00-c4ff-11ea-9615-c7eda39ee904.png" width= "450">
+<img src = "https://user-images.githubusercontent.com/53027578/87830865-d96fe680-c836-11ea-8e9d-30039bdbe426.png" width= "1200">
 </p>
 
 - [x] Design background (the walls)
@@ -14,9 +14,9 @@
 - [x] Have "game over" text when you lose
 - [x] Have "you won" text when you win
 - [x] Click spacebar to reset game
-- [ ] When pacman eats a bigger dot to turn the ghosts to eatable and earn higher score
-- [ ] Add instructions to the side of the game
+- [x] When pacman eats a bigger dot to turn the ghosts to eatable and earn higher score
+- [x] Add instructions to the side of the game
 - [ ] Add music
-- [ ] CSS styling to make page look more appealing (less white space)
+- [x] CSS styling to make page look more appealing (less white space)
 - [ ] README
 
