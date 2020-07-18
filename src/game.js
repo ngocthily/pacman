@@ -214,6 +214,9 @@ export default class Pacman {
                 // eating a ghost that's vulnerable
                 // add score +200
                 this.eatGhostScore += 200;
+                this.ctx.font = "40px Game Over";
+                this.ctx.fillStyle = "blue";
+                this.ctx.fillText("+200", this.ghost.redX - 40, this.ghost.redY)
                 // put ghost back to starting point and not vulnerable
                 this.ghost.redX = 300;
                 this.ghost.redY = 270;
@@ -225,6 +228,9 @@ export default class Pacman {
             // eating a ghost that's vulnerable
             // add score +200
             this.eatGhostScore += 200;
+            this.ctx.font = "40px Game Over";
+            this.ctx.fillStyle = "blue";
+            this.ctx.fillText("+200", this.ghost.pinkX - 40, this.ghost.pinkY)
             // put ghost back to starting point and not vulnerable
             this.ghost.pinkX = 270;
             this.ghost.pinkY = 270;
@@ -236,6 +242,9 @@ export default class Pacman {
             // eating a ghost that's vulnerable
             // add score +200
             this.eatGhostScore += 200;
+            this.ctx.font = "40px Game Over";
+            this.ctx.fillStyle = "blue";
+            this.ctx.fillText("+200", this.ghost.orangeX - 40, this.ghost.orangeY)
             // put ghost back to starting point and not vulnerable
             this.ghost.orangeX = 300;
             this.ghost.orangeY = 300;
@@ -247,6 +256,9 @@ export default class Pacman {
             // eating a ghost that's vulnerable
             // add score +200
             this.eatGhostScore += 200;
+            this.ctx.font = "40px Game Over";
+            this.ctx.fillStyle = "blue";
+            this.ctx.fillText("+200", this.ghost.blueX - 40, this.ghost.blueY)
             // put ghost back to starting point and not vulnerable
             this.ghost.blueX = 330;
             this.ghost.blueY = 270;
