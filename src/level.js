@@ -19,9 +19,9 @@ export default class Level {
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
 
         if (this.ready) {
-            ctx.font = "60px Game Over";
+            ctx.font = "26px Times New Roman";
             ctx.fillStyle = "yellow";
-            ctx.fillText("READY!", 257, 400);
+            ctx.fillText("READY!", 252, 400);
         } 
 
         // Tiles

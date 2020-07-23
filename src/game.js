@@ -26,8 +26,6 @@ export default class Pacman {
         this.soundContainer.addEventListener("click", (e) => {
             this.sound(e)
         });
-
-        document.fonts.load('10pt "Game Over"');
     }
 
     sound () {
@@ -202,16 +200,16 @@ export default class Pacman {
             clearInterval(window.myAnimation);
             this.lost = true;
             this.ghost.removeGhosts(this.ctx);
-            this.ctx.font = "60px Game Over";
+            this.ctx.font = "26px Times New Roman";
             this.ctx.fillStyle = "red";
             // setTimeout because we have to let pacman die fully
-            setTimeout(() => {this.ctx.fillText("GAME OVER", 230, 400)}, 3000);
+            setTimeout(() => {this.ctx.fillText("GAME OVER", 225, 400)}, 3000);
         } else if (this.ghost.redVulnerable
             && (this.main.x === this.ghost.redX && this.main.y === this.ghost.redY)) {
                 // eating a ghost that's vulnerable
                 // add score +200
                 this.eatGhostScore += 200;
-                this.ctx.font = "40px Game Over";
+                this.ctx.font = "20px Times New Roman";
                 this.ctx.fillStyle = "blue";
                 this.ctx.fillText("+200", this.ghost.redX - 45, this.ghost.redY)
                 // put ghost back to starting point and not vulnerable
@@ -225,7 +223,7 @@ export default class Pacman {
             // eating a ghost that's vulnerable
             // add score +200
             this.eatGhostScore += 200;
-            this.ctx.font = "40px Game Over";
+            this.ctx.font = "20px Times New Roman";
             this.ctx.fillStyle = "blue";
             this.ctx.fillText("+200", this.ghost.pinkX - 45, this.ghost.pinkY)
             // put ghost back to starting point and not vulnerable
@@ -239,7 +237,7 @@ export default class Pacman {
             // eating a ghost that's vulnerable
             // add score +200
             this.eatGhostScore += 200;
-            this.ctx.font = "40px Game Over";
+            this.ctx.font = "20px Times New Roman";
             this.ctx.fillStyle = "blue";
             this.ctx.fillText("+200", this.ghost.orangeX - 45, this.ghost.orangeY)
             // put ghost back to starting point and not vulnerable
@@ -253,7 +251,7 @@ export default class Pacman {
             // eating a ghost that's vulnerable
             // add score +200
             this.eatGhostScore += 200;
-            this.ctx.font = "40px Game Over";
+            this.ctx.font = "20px Times New Roman";
             this.ctx.fillStyle = "blue";
             this.ctx.fillText("+200", this.ghost.blueX - 45, this.ghost.blueY)
             // put ghost back to starting point and not vulnerable
@@ -310,8 +308,8 @@ export default class Pacman {
     checkWin() {
         if (this.level.checkCoins()) {
             clearInterval(window.myAnimation);
-            this.ctx.font = "60px Game Over";
-            this.ctx.fillText("You won!", 235, 400);
+            this.ctx.font = "26px Times New Roman";
+            this.ctx.fillText("You won!", 240, 400);
         }
     }
 
@@ -322,6 +320,6 @@ export default class Pacman {
             content += "<img src='images/pacman.png'>";
         }
         this.lives.innerHTML = content;
-        <div style="font-family: Game Over;">.</div>;
+        // <div style="font-family: Game Over;">.</div>;
     }
 }
