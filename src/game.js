@@ -27,6 +27,7 @@ export default class Pacman {
             this.sound(e)
         });
 
+        document.fonts.load('10pt "Game Over"');
     }
 
     sound () {
