@@ -2,7 +2,7 @@
     background-color: black;
 } */
 
-@font-face {
+/* @font-face {
     font-family: "Game Over";
     src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.eot");
     src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.eot?#iefix") format("embedded-opentype");
@@ -11,7 +11,11 @@
     src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.svg#game_overbold") format("svg");
     font-weight: bold;
     font-style: normal;
-}
+} */
+/* @font-face {
+    font-family: "Game Over";
+    src: url('game_over.ttf') format('truetype');
+} */
 
 .pacman-container {
     display: -webkit-flex;

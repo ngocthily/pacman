@@ -18,12 +18,6 @@ export default class Pacman {
         this.score = document.getElementById("score");
         this.lives = document.getElementById("lives");
         this.restart();
-        
-        // let content = '';
-        // for (var i = 0; i < this.life; i++) {
-        //     content += "<img src='images/pacman.png'>";
-        // }
-        // this.lives.innerHTML = content;
 
         this.on = false;
         this.remix = new Audio("./audio/pacman_remix.mp3")
@@ -32,6 +26,7 @@ export default class Pacman {
         this.soundContainer.addEventListener("click", (e) => {
             this.sound(e)
         });
+
     }
 
     sound () {
@@ -61,6 +56,7 @@ export default class Pacman {
         } else {
             this.level.ready = true;
         }
+
         this.animate();
     }
 
