@@ -4,13 +4,7 @@
 
 @font-face {
     font-family: "Game Over";
-    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.eot");
-    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.eot?#iefix") format("embedded-opentype");
-    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.woff") format("woff");
-    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.ttf") format("truetype");
-    src: url("..\..\public\fonts\game_over\game_over-Webfont\game_over-Bold.svg#game_overbold") format("svg");
-    font-weight: bold;
-    font-style: normal;
+    src: url('game_over.ttf');
 }
 
 .pacman-container {
