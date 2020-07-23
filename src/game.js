@@ -325,5 +325,6 @@ export default class Pacman {
             content += "<img src='images/pacman.png'>";
         }
         this.lives.innerHTML = content;
+        <div style="font-family: Game Over;">.</div>;
     }
 }
