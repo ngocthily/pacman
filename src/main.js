@@ -8,30 +8,22 @@ export default class Main {
         this.x = 300;
         this.y = 540;
 
-        this.friction = 0.5;
-
         // starts the mouth at the "widest"
         // and closes mouth first before opening
         this.mouth = 0;
         this.opening = true;
-
         // for pacman to die
         this.dead = false;
         // turn ghosts to vulnerable ones
         this.turnGhost = false;
-
         // sets right to true for its starting position
         this.right = true;
         this.left = false;
         this.up = false;
         this.down = false;
-
         // to keep score
         this.score = 0;
         this.board = Board;
-
-        // need to work on sound effects to the right BPM
-        // this.chomping = new Audio("./audio/pacman_chomp.wav");
     }
 
     animate(ctx) {
@@ -49,19 +41,12 @@ export default class Main {
             this.resetDirection();
             ctx.moveTo(this.x + 5, this.y + 5);
             ctx.lineTo(this.x + 10, this.y + 10);
-            ctx.moveTo(this.x - 5, this.y - 5);
             ctx.lineTo(this.x - 10, this.y - 10);
-            ctx.moveTo(this.x + 5, this.y - 5);
             ctx.lineTo(this.x + 10, this.y - 10);
-            ctx.moveTo(this.x - 5, this.y + 5);
             ctx.lineTo(this.x - 10, this.y + 10);
-            ctx.moveTo(this.x + 5, this.y);
             ctx.lineTo(this.x + 10, this.y);
-            ctx.moveTo(this.x - 5, this.y);
             ctx.lineTo(this.x - 10, this.y);
-            ctx.moveTo(this.x, this.y + 5);
             ctx.lineTo(this.x, this.y + 10);
-            ctx.moveTo(this.x, this.y - 5);
             ctx.lineTo(this.x, this.y - 10);
             ctx.strokeStyle = "yellow";
             ctx.stroke();
@@ -95,27 +80,21 @@ export default class Main {
             if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30)] !== 1
                 && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30)] !== 1) {
                     this.x+=30;
-                    this.switchSide();
-                    this.moveMouth();
-                    this.collectCoin();
+                this.forAllDirection();
             }
         } else if (way === "left") {
             this.left = true;
             if (this.board[Math.round(this.y / 30) - 1][Math.round(this.x / 30) - 2] !== 1
                 && this.board[Math.floor(this.y / 30) - 1][Math.floor(this.x / 30) - 2] !== 1) {
                 this.x -= 30;
-                this.switchSide();
-                this.moveMouth();
-                this.collectCoin();
+                this.forAllDirection();
             }
         } else if (way === "up") {
             this.up = true;
             if (this.board[Math.round(this.y / 30) - 2][Math.round(this.x / 30) - 1] !== 1
                 && this.board[Math.floor(this.y / 30) - 2][Math.floor(this.x / 30) - 1] !== 1) {
                 this.y -= 30;
-                this.switchSide();
-                this.moveMouth();
-                this.collectCoin();
+                this.forAllDirection();
             }
 
         } else if (way === "down") {
@@ -123,11 +102,15 @@ export default class Main {
             if (this.board[Math.round(this.y / 30)][Math.round(this.x / 30) - 1] !== 1
                 && this.board[Math.floor(this.y / 30)][Math.floor(this.x / 30) - 1] !== 1) {
                 this.y += 30;
-                this.switchSide();
-                this.moveMouth();
-                this.collectCoin();
+                this.forAllDirection();
             }
         }
+    }
+
+    forAllDirection() {
+        this.switchSide();
+        this.moveMouth();
+        this.collectCoin();
     }
 
     moveMouth() {
@@ -158,18 +141,15 @@ export default class Main {
     collectCoin() {
         let wholeNumX = (((this.x / 30) - 1) - Math.floor((this.x / 30) - 1)) === 0;
         let wholeNumY = (((this.y / 30) - 1) - Math.floor((this.y / 30) - 1)) === 0;
-        // this.chomping.pause();
 
         if (wholeNumX && wholeNumY) {
             if (this.board[(this.y/30)-1][(this.x/30)-1] === 2) {
                 this.board[(this.y / 30) - 1][(this.x / 30) - 1] = 0;
                 this.score += 10;
-                // this.chomping.play();
                 // small dots are worth 10 each
             } else if (this.board[(this.y / 30) - 1][(this.x / 30) - 1] === 3) {
                 this.board[(this.y / 30) - 1][(this.x / 30) - 1] = 0;
                 this.score += 50;
-                // this.chomping.play();
                 this.turnGhost = true;
                 setTimeout(() => {
                     this.turnGhost = false;

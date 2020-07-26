@@ -17,8 +17,8 @@ export default class Pacman {
         window.addEventListener("keydown", (e) => this.registerEvents(e));
         this.score = document.getElementById("score");
         this.lives = document.getElementById("lives");
-        this.restart();
 
+        // Audio
         this.on = false;
         this.remix = new Audio("./audio/pacman_remix.mp3")
         this.soundContainer = document.getElementById("mute-btn-container");
@@ -26,6 +26,8 @@ export default class Pacman {
         this.soundContainer.addEventListener("click", (e) => {
             this.sound(e)
         });
+
+        this.restart();
     }
 
     sound () {
@@ -33,9 +35,6 @@ export default class Pacman {
             this.soundContainer.innerHTML = "<img id='volume-on' src='images/volume_up.png'>";
             this.remix.play();
             this.on = false;
-            // this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
-            // this.remix.pause();
-            // this.on = false;
         } else {
             this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
             this.remix.pause();
@@ -50,26 +49,17 @@ export default class Pacman {
         this.main = new Main(this.dimensions);
         this.ghost = new Ghost(this.dimensions);
         
-        if (this.lost) {
-            this.level.ready = false;
-        } else {
-            this.level.ready = true;
-        }
+        (this.lost) ? 
+        this.level.ready = false :
+        this.level.ready = true;
 
         this.animate();
     }
 
     registerEvents(e) {
         e.preventDefault();
-        
-        // needs to be window so we can clear it when pacman loses a game
-        // clear interval here or else pacman will move in diagonals for not clearing previous setInterval
-        // so it causes a bunch of setintervals to go together
-        clearInterval(window.rightMoves);
-        clearInterval(window.leftMoves);
-        clearInterval(window.upMoves);
-        clearInterval(window.downMoves);
-
+    
+        this.clearWindowMoves();
         // clears "READY!" after player hits a button
         this.level.ready = false;
 
@@ -79,37 +69,25 @@ export default class Pacman {
             if (e.keyCode === 39 || e.keyCode === 68) {
                 window.rightMoves = setInterval(() => {
                     this.main.move("right");
-                    if (this.main.turnGhost) {
-                        this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal()}, 15000);
-                    }
+                    this.timerForVulnerableGhosts();
                     this.main.turnGhost = false;
                 }, 300);
             } else if (e.keyCode === 37 || e.keyCode === 65) {
                 window.leftMoves = setInterval(() => {
                     this.main.move("left");
-                    if (this.main.turnGhost) {
-                        this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal()}, 15000);
-                    }
+                    this.timerForVulnerableGhosts();
                     this.main.turnGhost = false;
                 }, 300);
             } else if (e.keyCode === 38 || e.keyCode === 87) {
                 window.upMoves = setInterval(() => {
                     this.main.move("up");
-                    if (this.main.turnGhost) {
-                        this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal() }, 15000);
-                    }
+                    this.timerForVulnerableGhosts();
                     this.main.turnGhost = false;
                 }, 300);
             } else if (e.keyCode === 40 || e.keyCode === 83) {
                 window.downMoves = setInterval(() => {
                     this.main.move("down");
-                    if (this.main.turnGhost) {
-                        this.turnAllGhostsVulnerable();
-                        setTimeout(() => { this.turnGhostsBackNormal() }, 15000);
-                    } 
+                    this.timerForVulnerableGhosts();
                     this.main.turnGhost = false;
                 }, 300);
             } 
@@ -123,21 +101,31 @@ export default class Pacman {
         }
     }
 
-    turnAllGhostsVulnerable() {
-        this.ghost.redVulnerable = true;
-        this.ghost.pinkVulnerable = true;
-        this.ghost.orangeVulnerable = true;
-        this.ghost.blueVulnerable = true;
-        this.vulnerable = true;
+    timerForVulnerableGhosts() {
+        if (this.main.turnGhost) {
+            this.turnAllGhostsVulnerable(true);
+            setTimeout(() => { this.turnAllGhostsVulnerable(false) }, 15000);
+        }
     }
 
-    turnGhostsBackNormal() {
-        this.ghost.redVulnerable = false;
-        this.ghost.pinkVulnerable = false;
-        this.ghost.orangeVulnerable = false;
-        this.ghost.blueVulnerable = false;
-        this.vulnerable = false;
-        this.eatGhostScore = 0;
+    clearWindowMoves() {
+        // needs to be window so we can clear it when pacman loses a game
+        // clear interval here or else pacman will move in diagonals for not clearing previous setInterval
+        // so it causes a bunch of setintervals to go together
+        clearInterval(window.rightMoves);
+        clearInterval(window.leftMoves);
+        clearInterval(window.upMoves);
+        clearInterval(window.downMoves);
+    }
+
+    turnAllGhostsVulnerable(turn) {
+        this.ghost.redVulnerable = turn;
+        this.ghost.pinkVulnerable = turn;
+        this.ghost.orangeVulnerable = turn;
+        this.ghost.blueVulnerable = turn;
+        this.vulnerable = turn;
+
+        (turn) ? this.eatGhostScore = 0 : null;
     }
 
     animate() {
@@ -152,48 +140,16 @@ export default class Pacman {
 
     drawScore() {
         // Adds on the score from the previous try
-        if (this.totalScore < this.main.score) {
-            this.score.innerHTML = this.main.score + this.eatGhostScore;
-        } else {
+        (this.totalScore < this.main.score) ?
+            this.score.innerHTML = this.main.score + this.eatGhostScore :
             this.score.innerHTML = this.totalScore + this.main.score + this.eatGhostScore;
-        }
     }
 
     detectCollision() {
-        // this definitely can be cleaned up
         if (!this.vulnerable
             && this.sameSpot()
             && this.life !== 0) {
-                this.totalScore += this.main.score;
-                clearInterval(window.myAnimation);
-                // keep this because if you remove it the ghosts will still be detected
-                // this.sameSpot() will keep returning true
-                // we move them off the canvas
-                this.ghost.removeGhosts();
-                // pacman dying animation
-                // disables moving while pacman is dying
-                window.dying = setInterval(() => {
-                    this.listen = false;
-                    this.main.mouth -= 1;
-                    // need to overlay background each time or else pacman will overlay its old one
-                    this.level.animate(this.ctx);
-                    this.main.animate(this.ctx)
-                    if (this.main.mouth === -12) {
-                        clearInterval(window.dying);
-                        this.level.animate(this.ctx);
-                        this.main.dead = true;
-                        this.main.animate(this.ctx)
-                    }
-                }, 100)
-                this.startedGhost = false;
-                this.life -= 1;
-                // clear interval here again cause when pacman dies and restarts he will
-                // move a certain amount in the last direction if went if possible
-                clearInterval(window.rightMoves);
-                clearInterval(window.leftMoves);
-                clearInterval(window.upMoves);
-                clearInterval(window.downMoves);
-                setTimeout(() => {this.restart()}, 3000);
+                this.lifeDie();
         } else if (this.life === 0) {
             // lost all 3 lives
             // when game over remove pacman
@@ -209,9 +165,7 @@ export default class Pacman {
                 // eating a ghost that's vulnerable
                 // add score +200
                 this.eatGhostScore += 200;
-                this.ctx.font = "20px Times New Roman";
-                this.ctx.fillStyle = "blue";
-                this.ctx.fillText("+200", this.ghost.redX - 45, this.ghost.redY)
+                this.twoHundredFont(this.ghost.redX - 45, this.ghost.redY);
                 // put ghost back to starting point and not vulnerable
                 this.ghost.redX = 300;
                 this.ghost.redY = 270;
@@ -220,13 +174,8 @@ export default class Pacman {
                 this.ghost.moveRed(this.ctx);
         } else if (this.ghost.pinkVulnerable
             && (this.main.x === this.ghost.pinkX && this.main.y === this.ghost.pinkY)) {
-            // eating a ghost that's vulnerable
-            // add score +200
             this.eatGhostScore += 200;
-            this.ctx.font = "20px Times New Roman";
-            this.ctx.fillStyle = "blue";
-            this.ctx.fillText("+200", this.ghost.pinkX - 45, this.ghost.pinkY)
-            // put ghost back to starting point and not vulnerable
+            this.twoHundredFont(this.ghost.pinkX - 45, this.ghost.pinkY);
             this.ghost.pinkX = 270;
             this.ghost.pinkY = 270;
             this.ghost.pinkVulnerable = false;
@@ -234,13 +183,8 @@ export default class Pacman {
             this.ghost.movePink(this.ctx);
         } else if (this.ghost.orangeVulnerable
             && (this.main.x === this.ghost.orangeX && this.main.y === this.ghost.orangeY)) {
-            // eating a ghost that's vulnerable
-            // add score +200
             this.eatGhostScore += 200;
-            this.ctx.font = "20px Times New Roman";
-            this.ctx.fillStyle = "blue";
-            this.ctx.fillText("+200", this.ghost.orangeX - 45, this.ghost.orangeY)
-            // put ghost back to starting point and not vulnerable
+            this.twoHundredFont(this.ghost.orangeX - 45, this.ghost.orangeY);
             this.ghost.orangeX = 300;
             this.ghost.orangeY = 300;
             this.ghost.orangeVulnerable = false;
@@ -248,13 +192,8 @@ export default class Pacman {
             this.ghost.moveOrange(this.ctx);
         } else if (this.ghost.blueVulnerable
             && (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY)) {
-            // eating a ghost that's vulnerable
-            // add score +200
             this.eatGhostScore += 200;
-            this.ctx.font = "20px Times New Roman";
-            this.ctx.fillStyle = "blue";
-            this.ctx.fillText("+200", this.ghost.blueX - 45, this.ghost.blueY)
-            // put ghost back to starting point and not vulnerable
+            this.twoHundredFont(this.ghost.blueX - 45, this.ghost.blueY);
             this.ghost.blueX = 330;
             this.ghost.blueY = 270;
             this.ghost.blueVulnerable = false;
@@ -265,37 +204,44 @@ export default class Pacman {
                 // This is placed at the end for a reason
                 // its for when any of the vulnerable ghost gets eaten => turns backs to a regular
                 // allows pacman to die when hitting that ghost
-            this.totalScore += this.main.score;
-            clearInterval(window.myAnimation);
-            // keep this because if you remove it the ghosts will still be detected
-            // this.sameSpot() will keep returning true
-            // we move them off the canvas
-            this.ghost.removeGhosts();
-            // pacman dying animation
-            // disables moving while pacman is dying
-            window.dying = setInterval(() => {
-                this.listen = false;
-                this.main.mouth -= 1;
-                // need to overlay background each time or else pacman will overlay its old one
-                this.level.animate(this.ctx);
-                this.main.animate(this.ctx)
-                if (this.main.mouth === -12) {
-                    clearInterval(window.dying);
-                    this.level.animate(this.ctx);
-                    this.main.dead = true;
-                    this.main.animate(this.ctx)
-                }
-            }, 100)
-            this.startedGhost = false;
-            this.life -= 1;
-            // clear interval here again cause when pacman dies and restarts he will
-            // move a certain amount in the last direction if went if possible
-            clearInterval(window.rightMoves);
-            clearInterval(window.leftMoves);
-            clearInterval(window.upMoves);
-            clearInterval(window.downMoves);
-            setTimeout(() => { this.restart() }, 3000);
+            this.lifeDie();
         }
+    }
+
+    lifeDie() {
+        this.totalScore += this.main.score;
+        clearInterval(window.myAnimation);
+        // keep this because if you remove it the ghosts will still be detected
+        // this.sameSpot() will keep returning true
+        // we move them off the canvas
+        this.ghost.removeGhosts();
+        // pacman dying animation
+        // disables moving while pacman is dying
+        window.dying = setInterval(() => {
+            this.listen = false;
+            this.main.mouth -= 1;
+            // need to overlay background each time or else pacman will overlay its old one
+            this.level.animate(this.ctx);
+            this.main.animate(this.ctx)
+            if (this.main.mouth === -12) {
+                clearInterval(window.dying);
+                this.level.animate(this.ctx);
+                this.main.dead = true;
+                this.main.animate(this.ctx)
+            }
+        }, 100)
+        this.startedGhost = false;
+        this.life -= 1;
+        // clear interval here again cause when pacman dies and restarts he will
+        // move a certain amount in the last direction if went if possible
+        this.clearWindowMoves();
+        setTimeout(() => { this.restart() }, 3000);
+    }
+
+    twoHundredFont(x, y) {
+        this.ctx.font = "20px Times New Roman";
+        this.ctx.fillStyle = "blue";
+        this.ctx.fillText("+200", x, y)
     }
 
     sameSpot() {
@@ -314,12 +260,10 @@ export default class Pacman {
     }
 
     drawLives() {
-        // edit to have pacman images
         let content = '';
         for (var i=0; i <this.life; i++) {
             content += "<img src='images/pacman.png'>";
         }
         this.lives.innerHTML = content;
-        // <div style="font-family: Game Over;">.</div>;
     }
 }
