@@ -41,12 +41,26 @@ export default class Main {
             this.resetDirection();
             ctx.moveTo(this.x + 5, this.y + 5);
             ctx.lineTo(this.x + 10, this.y + 10);
+
+            ctx.moveTo(this.x - 5, this.y - 5);
             ctx.lineTo(this.x - 10, this.y - 10);
+
+            ctx.moveTo(this.x + 5, this.y -5);
             ctx.lineTo(this.x + 10, this.y - 10);
+
+            ctx.moveTo(this.x - 5, this.y + 5);
             ctx.lineTo(this.x - 10, this.y + 10);
+
+            ctx.moveTo(this.x + 5 , this.y);
             ctx.lineTo(this.x + 10, this.y);
+
+            ctx.moveTo(this.x - 5, this.y);
             ctx.lineTo(this.x - 10, this.y);
+
+            ctx.moveTo(this.x, this.y + 5);
             ctx.lineTo(this.x, this.y + 10);
+
+            ctx.moveTo(this.x, this.y - 5);
             ctx.lineTo(this.x, this.y - 10);
             ctx.strokeStyle = "yellow";
             ctx.stroke();

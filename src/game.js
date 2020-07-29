@@ -19,10 +19,15 @@ export default class Pacman {
         this.lives = document.getElementById("lives");
 
         // Audio
-        this.on = false;
+        this.on = true;
         this.remix = new Audio("./audio/pacman_remix.mp3")
         this.soundContainer = document.getElementById("mute-btn-container");
-        this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
+        // this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
+        // this.soundContainer.addEventListener("click", (e) => {
+        //     this.sound(e)
+        // });
+
+        this.soundContainer.innerHTML = "<img id='volume-on' src='images/volume_up.png'>";
         this.soundContainer.addEventListener("click", (e) => {
             this.sound(e)
         });
@@ -62,6 +67,9 @@ export default class Pacman {
         this.clearWindowMoves();
         // clears "READY!" after player hits a button
         this.level.ready = false;
+        
+        this.remix.play();
+        this.on = false;
 
         // checks detection of collision with another ghost every time it moves
         setInterval(() => { this.detectCollision() }, 300);
