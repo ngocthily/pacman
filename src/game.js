@@ -20,9 +20,9 @@ export default class Pacman {
 
         // Audio
         this.on = true;
-        this.remix = new Audio("./audio/pacman_remix.mp3")
+        this.remix = new Audio("./audio/pacman_remix.mp3");
         this.soundContainer = document.getElementById("mute-btn-container");
-        this.soundContainer.innerHTML = "<img id='volume-on' src='images/volume_up.png'>";
+        this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
         this.soundContainer.addEventListener("click", (e) => {
             this.sound(e)
         });
@@ -38,10 +38,12 @@ export default class Pacman {
             this.soundContainer.innerHTML = "<img id='volume-on' src='images/volume_up.png'>";
             this.remix.play();
             this.on = false;
+            this.soudEffects = true;
         } else {
             this.soundContainer.innerHTML = "<img id='volume-off' src='images/volume_mute.png'>";
             this.remix.pause();
             this.on = true;
+            this.soundEffects = false;
         }
     }
 
@@ -165,7 +167,9 @@ export default class Pacman {
             setTimeout(() => {this.ctx.fillText("GAME OVER", 225, 400)}, 3000);
         } else if (this.ghost.redVulnerable
             && (this.main.x === this.ghost.redX && this.main.y === this.ghost.redY)) {
-                this.eatGhostSound.play();
+                if (this.soudEffects) {
+                    this.eatGhostSound.play();
+                }
                 // eating a ghost that's vulnerable
                 // add score +200
                 this.eatGhostScore += 200;
@@ -178,7 +182,9 @@ export default class Pacman {
                 this.ghost.moveRed(this.ctx);
         } else if (this.ghost.pinkVulnerable
             && (this.main.x === this.ghost.pinkX && this.main.y === this.ghost.pinkY)) {
-            this.eatGhostSound.play();
+            if (this.soudEffects) {
+                this.eatGhostSound.play();
+            }
             this.eatGhostScore += 200;
             this.twoHundredFont(this.ghost.pinkX - 45, this.ghost.pinkY);
             this.ghost.pinkX = 270;
@@ -188,7 +194,9 @@ export default class Pacman {
             this.ghost.movePink(this.ctx);
         } else if (this.ghost.orangeVulnerable
             && (this.main.x === this.ghost.orangeX && this.main.y === this.ghost.orangeY)) {
-            this.eatGhostSound.play();
+            if (this.soudEffects) {
+                this.eatGhostSound.play();
+            }
             this.eatGhostScore += 200;
             this.twoHundredFont(this.ghost.orangeX - 45, this.ghost.orangeY);
             this.ghost.orangeX = 300;
@@ -198,7 +206,9 @@ export default class Pacman {
             this.ghost.moveOrange(this.ctx);
         } else if (this.ghost.blueVulnerable
             && (this.main.x === this.ghost.blueX && this.main.y === this.ghost.blueY)) {
-            this.eatGhostSound.play();
+            if (this.soudEffects) {
+                this.eatGhostSound.play();
+            }
             this.eatGhostScore += 200;
             this.twoHundredFont(this.ghost.blueX - 45, this.ghost.blueY);
             this.ghost.blueX = 330;
@@ -217,7 +227,9 @@ export default class Pacman {
 
     lifeDie() {
         this.totalScore += this.main.score;
-        this.mainDyingSound.play();
+        if (this.soudEffects) {
+            this.mainDyingSound.play();
+        }
         clearInterval(window.myAnimation);
         // keep this because if you remove it the ghosts will still be detected
         // this.sameSpot() will keep returning true
