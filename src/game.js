@@ -66,9 +66,6 @@ export default class Pacman {
         // clears "READY!" after player hits a button
         this.level.ready = false;
 
-        this.remix.play();
-        this.on = false;
-
         // checks detection of collision with another ghost every time it moves
         setInterval(() => { this.detectCollision() }, 300);
         if (this.listen) {
