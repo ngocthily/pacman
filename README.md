@@ -1,6 +1,6 @@
 # PAC-MAN
 <p align="center">
-<img src = "https://user-images.githubusercontent.com/53027578/87837983-4f317d80-c84a-11ea-8551-4969c6611057.png" width= "1200">
+<img src = "https://user-images.githubusercontent.com/53027578/89241583-32b87380-d5b4-11ea-8bee-22a74b0965a8.png" width= "1200">
 </p>
 
 # About
